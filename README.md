@@ -1,21 +1,30 @@
 <div align="center">
-  <img src="./assets/profile-banner.svg" alt="Adam GitHub profile banner" width="100%" />
-
   <h1>Adam</h1>
   <p>
     Java backend developer building system-heavy side projects, technical writeups, and immersive product surfaces.
   </p>
-
-  <p>
-    <a href="https://home.adamllll.com/from-github"><strong>Enter the website bridge</strong></a>
-    ·
-    <a href="https://github.com/adamllll/mq">MQ</a>
-    ·
-    <a href="https://github.com/adamllll/lottery-system">Lottery System</a>
-    ·
-    <a href="https://github.com/adamllll/StoryWeaver">StoryWeaver</a>
-  </p>
 </div>
+
+```text
+adam@github:~$ whoami
+Java backend developer with a strong interest in systems, architecture, and product presentation.
+
+adam@github:~$ focus --list
+distributed systems / middleware-flavored experiments / technical writing / narrative UI
+
+adam@github:~$ route --entry
+GitHub -> Bridge -> Immersive Site
+```
+
+<p align="center">
+  <a href="https://home.adamllll.com/from-github"><strong>Enter the website bridge</strong></a>
+  ·
+  <a href="https://github.com/adamllll/mq">MQ</a>
+  ·
+  <a href="https://github.com/adamllll/lottery-system">Lottery System</a>
+  ·
+  <a href="https://github.com/adamllll/StoryWeaver">StoryWeaver</a>
+</p>
 
 ## Who this page is for
 If you landed here from GitHub, this README is the fast entrance poster:
