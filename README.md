@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="./assets/profile-banner.svg" alt="Adam profile banner" />
-</p>
-
 <details open>
   <summary>[中文]</summary>
 
