@@ -2,58 +2,47 @@
   <img src="./assets/profile-banner.svg" alt="Adam profile banner" />
 </p>
 
-<table>
-  <tr>
-    <td>
-      <details open>
-        <summary>[中文]</summary>
+<details open>
+  <summary>[中文]</summary>
 
 <div align="center">
   <h1>Adam</h1>
   <p>Java 后端开发者，专注系统架构、中间件实验、技术写作与沉浸式产品表达。</p>
 </div>
 
-```text
-adam@github:~$ whoami
+<pre><code>adam@github:~$ whoami
 专注于系统、架构与产品化表达的 Java 后端工程师。
 
 adam@github:~$ focus --list
 分布式系统 / 中间件风味实验 / 技术写作 / 叙事性 UI
 
 adam@github:~$ route --entry
-GitHub -> Bridge -> 沉浸式 Vaporwave 站点
-```
+GitHub -&gt; Bridge -&gt; 沉浸式 Vaporwave 站点</code></pre>
 
 这个 README 是 GitHub 访客的第一张入口海报：先用最短时间说明我是谁、在做什么，再把你引导到 bridge 页面，进入完整的复古桌面式主站体验。
 
-      </details>
-    </td>
-    <td>
-      <details>
-        <summary>[English]</summary>
+</details>
+
+<details>
+  <summary>[English]</summary>
 
 <div align="center">
   <h1>Adam</h1>
   <p>Java backend developer focused on systems, middleware-flavored experiments, technical writing, and immersive product surfaces.</p>
 </div>
 
-```text
-adam@github:~$ whoami
+<pre><code>adam@github:~$ whoami
 Backend developer with a strong interest in systems, architecture, and product presentation.
 
 adam@github:~$ focus --list
 distributed systems / middleware experiments / technical writing / narrative UI
 
 adam@github:~$ route --entry
-GitHub -> Bridge -> Immersive Site
-```
+GitHub -&gt; Bridge -&gt; Immersive Site</code></pre>
 
 This README is the fast entrance poster for GitHub visitors: it explains who I am, what I build, and where to click next before you enter the full retro-desktop website experience.
 
-      </details>
-    </td>
-  </tr>
-</table>
+</details>
 
 ## Universal Links
 
