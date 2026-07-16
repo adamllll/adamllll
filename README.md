@@ -1,101 +1,83 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=176&color=0:1a0a2e,38:000080,68:c774e8,100:00d8ff&text=ADAM_OS&fontColor=f8f7ff&fontSize=58&fontAlignY=34&desc=public%20desktop%20%7C%20commit%20trace%20%7C%20tools%20%7C%20interfaces&descAlignY=58&descSize=15" alt="ADAM OS profile banner with vaporwave desktop colors" />
+<img src="./assets/adam-os-hero.svg" alt="ADAM OS — public desktop, systems, interfaces, and AI-assisted build loops" width="100%" />
+
+<br />
+
+<a href="https://home.adamllll.com"><img src="https://img.shields.io/badge/ENTER_HOME-0b1020?style=for-the-badge&logo=vercel&logoColor=00d8ff&labelColor=14102a&color=00d8ff" alt="Enter Home" /></a>
+<a href="https://home.adamllll.com/blog"><img src="https://img.shields.io/badge/OPEN_BLOG-0b1020?style=for-the-badge&logo=readme&logoColor=ff6ad5&labelColor=14102a&color=ff6ad5" alt="Open Blog" /></a>
+<a href="https://github.com/adamllll?tab=repositories"><img src="https://img.shields.io/badge/VIEW_REPOS-0b1020?style=for-the-badge&logo=github&logoColor=72f1b8&labelColor=14102a&color=72f1b8" alt="View repositories" /></a>
+
+</div>
 
 ```text
 C:\ADAM_OS> boot profile.exe
-surface: GitHub profile as public desktop
-signal:  commit trace over trophy board
-style:   Win95 chrome, vaporwave phosphor
+surface  GitHub profile as a public desktop card
+focus    systems · interfaces · tools · AI-assisted build loops
+rule     signal over scoreboard; shipping trace over vanity numbers
 ```
 
-<a href="https://home.adamllll.com"><img src="https://img.shields.io/badge/ENTER_HOME-1a0a2e?style=for-the-badge&logo=vercel&logoColor=00d8ff" alt="Enter Home" /></a> <a href="https://github.com/adamllll"><img src="https://img.shields.io/badge/COMMIT_TRACE-000080?style=for-the-badge&logo=github&logoColor=ffffff" alt="Commit Trace" /></a> <a href="https://home.adamllll.com/blog"><img src="https://img.shields.io/badge/BLOG.DB-c774e8?style=for-the-badge&logo=readme&logoColor=ffffff" alt="Blog" /></a>
+## `~/console`
 
-</div>
+| lane | signal |
+|---|---|
+| **Systems** | backend experiments, state flow, runtime edges |
+| **Interfaces** | TypeScript surfaces, retro UI, narrative entry points |
+| **Tools** | small useful machines, automation, observability |
+| **Workflow** | AI-assisted loops, docs, tests, release verification |
 
----
-
-## `~/profile`
+## `~/active-window`
 
 ```bash
-adam@github:~$ whoami
-systems / tools / interfaces / AI-assisted build loops
-
-adam@github:~$ boot --surface
-GitHub profile -> public desktop card -> commit signal monitor
-
 adam@github:~$ current --shape
-small useful machines, retro surfaces, narrative entry points
+building personal OS surfaces, deployment tools, and small public artifacts
+
+adam@github:~$ preference --ui
+retro terminal atmosphere, readable hierarchy, fewer fake trophy counters
+
+adam@github:~$ constraint --github-profile
+GitHub-compatible markdown only; local SVG art; public stats clearly labelled
 ```
 
-## `~/signal`
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Systems-1a0a2e?style=flat-square&logo=openjdk&logoColor=72f1b8" alt="Systems" />
-  <img src="https://img.shields.io/badge/Tools-1a0a2e?style=flat-square&logo=typescript&logoColor=93c5fd" alt="Tools" />
-  <img src="https://img.shields.io/badge/Interfaces-1a0a2e?style=flat-square&logo=react&logoColor=00d8ff" alt="Interfaces" />
-  <img src="https://img.shields.io/badge/AI_Workflow-1a0a2e?style=flat-square&logo=openai&logoColor=c4b5fd" alt="AI-assisted workflow" />
-  <img src="https://img.shields.io/badge/Personal_OS-000080?style=flat-square&logo=windows95&logoColor=ff6ad5" alt="Personal OS" />
-</p>
-
-```text
-SYSTEMS      backend experiments, state flow, runtime edges
-INTERFACES   TypeScript surfaces, retro UI, narrative entry points
-WORKFLOW     AI-assisted loops, docs, experiments, verification
-```
-
-## `system-monitor://commit-trace`
+## `system-monitor://signal`
 
 <div align="center">
 
-<img src="./assets/telemetry-console.svg" alt="ADAM OS telemetry console frame" />
+<img src="./assets/telemetry-console.svg" alt="ADAM OS signal monitor showing public-only graph labels and private work disclaimer" width="100%" />
+
+<br />
+
+<img src="https://img.shields.io/badge/PUBLIC_GRAPH-last_31_days_only-00d8ff?style=for-the-badge&labelColor=111827&color=00d8ff" alt="Public graph is last 31 days only" />
+<img src="https://img.shields.io/badge/PRIVATE_WORK-GitHub_native_calendar-ff6ad5?style=for-the-badge&labelColor=111827&color=ff6ad5" alt="Private work belongs to GitHub native calendar" />
+<img src="https://img.shields.io/badge/MODE-rhythm_not_scoreboard-72f1b8?style=for-the-badge&labelColor=111827&color=72f1b8" alt="Mode rhythm not scoreboard" />
 
 <br />
 <br />
 
-<img src="https://img.shields.io/badge/TRACE-LIVE-00d8ff?style=for-the-badge&labelColor=000080&color=ff6ad5" alt="Trace live" />
-<img src="https://img.shields.io/badge/SOURCE-PUBLIC_ACTIVITY-1a0a2e?style=for-the-badge&labelColor=2d1b4e&color=c774e8" alt="Source public activity" />
-<img src="https://img.shields.io/badge/MODE-SIGNAL_OVER_SCOREBOARD-1a0a2e?style=for-the-badge&labelColor=000080&color=72f1b8" alt="Mode signal over scoreboard" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=adamllll&bg_color=0b1020&color=f8f7ff&line=00d8ff&point=ff6ad5&area=true&area_color=7c3aed&hide_border=true&radius=8&height=320&custom_title=PUBLIC_ONLY%20ACTIVITY%20TRACE%20%2F%20LAST%2031%20DAYS" alt="Public-only GitHub activity trace for the last 31 days" />
 
 <br />
 <br />
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=adamllll&bg_color=12071f&color=f8f7ff&line=00d8ff&point=ff6ad5&area=true&area_color=c774e8&hide_border=true&radius=6&height=360&custom_title=ADAM_OS%20PUBLIC%20COMMIT%20SIGNAL" alt="GitHub public commit activity signal graph" />
-
-<br />
-<br />
-
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=adamllll&theme=radical&utcOffset=8" alt="Commit productive time chart in UTC plus 8" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=adamllll&theme=tokyonight&utcOffset=8" alt="Public commit productive time chart in UTC plus 8" />
 
 </div>
 
 ```text
-C:\ADAM_OS\SIGNALS> inspect commit-trace
-
-input      public GitHub activity
-scope      commits, pull requests, reviews, issues, commit hours
-readout    rhythm, pressure, shipping pulse, active windows
-filter     trophy numbers muted
-
-C:\ADAM_OS\SIGNALS> render graph --vaporwave --win95-frame
-```
-
-```text
-+----------------------------------------------------------------+
-| ADAM_OS MONITOR                              SIGNAL: PUBLIC     |
-+----------------------------------------------------------------+
-| cyan trace     public contribution intensity                    |
-| pink nodes     active days on the graph                         |
-| violet field   activity area, not a trophy counter              |
-+----------------------------------------------------------------+
+C:\ADAM_OS\SIGNALS> inspect graph-source
+public_activity_graph  external widget; public events only; short rolling window
+native_contribution    GitHub calendar; can include private counts when enabled
+profile_policy         label the source before showing the signal
 ```
 
 <details>
 <summary><b>中文说明</b></summary>
 
-这是我的 GitHub 入口。重点不是数字好看，而是公开提交节奏和正在折腾的系统痕迹。
+这是我的 GitHub 入口，不是奖杯墙。
 
-完整一点的版本在我的个人主页里。那里更像一台可以点开的旧电脑。
+公开动态图只代表第三方服务能看到的公开活动；私有仓库提交要看 GitHub 原生贡献日历，并开启 `Contribution settings -> Private contributions` 后才会匿名计入个人主页。
+
+完整一点的版本在个人主页里，更像一台可以点开的旧电脑。
 
 </details>
 
@@ -103,20 +85,11 @@ C:\ADAM_OS\SIGNALS> render graph --vaporwave --win95-frame
 
 <div align="center">
 
-<sub>front poster online / bridge to the full home base</sub>
+<sub>front poster online / public desktop card / full home base behind the door</sub>
 
 <br />
 <br />
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=80&section=footer&color=0:00d8ff,55:c774e8,100:1a0a2e" alt="vaporwave footer wave" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=72&section=footer&color=0:00d8ff,45:ff6ad5,75:7c3aed,100:0b1020" alt="vaporwave footer wave" />
 
 </div>
-
-<!--
-Banner asset prompt for the future self-hosted image:
-
-A retro Windows 95 vaporwave desktop banner background, 16:5 wide composition, deep purple night sky, neon cyan and magenta glow, low-poly horizon mountains, chrome grid floor receding into perspective, subtle CRT scanline texture, pixel-art inspired but polished, empty center space for title text, small abstract desktop window silhouettes near the edges, nostalgic 1990s computer interface mood, high contrast, crisp details, no readable text, no logos, no watermark.
-
-Recommended final asset path: assets/profile-banner.png
-Recommended final size: 1600x520
--->

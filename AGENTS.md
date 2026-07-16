@@ -15,9 +15,10 @@ This repository powers the GitHub profile README for `adamllll`.
 
 ## Visual Direction
 
-- Current style: dark command-center / cyan-violet / backend-systems profile.
-- Tone: concise, technical, slightly atmospheric.
-- Useful motifs: terminal snippets, bridge/home-base language, project nodes, signal strips.
+- Current style: dark ADAM_OS public-desktop card / cyan-violet-magenta / Win95 chrome accents.
+- Tone: concise, technical, slightly atmospheric; signal over scoreboard.
+- Useful motifs: local SVG hero + telemetry frame, terminal snippets, clearly labelled public-only stats.
+- External graphs must state they are public/short-window; private work belongs to GitHub native calendar.
 
 ## Verification
 
