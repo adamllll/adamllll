@@ -12,6 +12,7 @@ import json
 import os
 import re
 import sys
+from datetime import date, timedelta
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -23,7 +24,22 @@ PUBLIC_CALENDAR_URL = f"https://github.com/users/{USERNAME}/contributions"
 
 QUERY = """
 query ProfilePulse($login: String!) {
+  viewer {
+    login
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks {
+          contributionDays {
+            date
+            contributionCount
+          }
+        }
+      }
+    }
+  }
   user(login: $login) {
+    login
     contributionsCollection {
       contributionCalendar {
         totalContributions
@@ -55,7 +71,7 @@ def request(url: str, *, token: str | None = None, payload: dict | None = None) 
         return response.read().decode("utf-8")
 
 
-def graphql_calendar(token: str) -> tuple[int, list[dict[str, int | str]]]:
+def graphql_calendar(token: str) -> tuple[int, list[dict[str, int | str]], str]:
     raw = request(
         GRAPHQL_URL,
         token=token,
@@ -64,16 +80,24 @@ def graphql_calendar(token: str) -> tuple[int, list[dict[str, int | str]]]:
     body = json.loads(raw)
     if body.get("errors"):
         raise RuntimeError(body["errors"][0].get("message", "GraphQL query failed"))
-    user = body.get("data", {}).get("user")
-    if not user:
+
+    viewer = body.get("data", {}).get("viewer") or {}
+    profile = body.get("data", {}).get("user")
+    if not profile:
         raise RuntimeError(f"GitHub user {USERNAME!r} was not found")
-    calendar = user["contributionsCollection"]["contributionCalendar"]
+    if str(viewer.get("login", "")).lower() == USERNAME.lower():
+        profile = viewer
+        source = "github-graphql-viewer"
+    else:
+        source = "github-graphql-public"
+
+    calendar = profile["contributionsCollection"]["contributionCalendar"]
     days = [
         {"date": day["date"], "count": int(day["contributionCount"])}
         for week in calendar["weeks"]
         for day in week["contributionDays"]
     ]
-    return int(calendar["totalContributions"]), days
+    return int(calendar["totalContributions"]), days, source
 
 
 def public_calendar() -> tuple[int, list[dict[str, int | str]]]:
@@ -114,8 +138,8 @@ def load_calendar() -> tuple[int, list[dict[str, int | str]], str]:
     )
     if token:
         try:
-            total, days = graphql_calendar(token)
-            return total, days, "github-graphql"
+            total, days, source = graphql_calendar(token)
+            return total, days, source
         except (RuntimeError, urllib.error.URLError, json.JSONDecodeError) as exc:
             print(f"warning: GraphQL unavailable ({exc}); falling back to public calendar", file=sys.stderr)
     total, days = public_calendar()
@@ -141,8 +165,14 @@ def render(total: int, days: list[dict[str, int | str]], source: str) -> str:
     peak = max(counts, default=0)
     mode, accent = activity_mode(last_7)
 
-    recent = counts[-28:]
-    recent = [0] * (28 - len(recent)) + recent
+    calendar_by_date = {str(day["date"]): int(day["count"]) for day in days}
+    latest_date = date.fromisoformat(str(days[-1]["date"]))
+    current_week_start = latest_date - timedelta(days=latest_date.weekday())
+    window_start = current_week_start - timedelta(days=21)
+    recent = [
+        calendar_by_date.get((window_start + timedelta(days=index)).isoformat(), 0)
+        for index in range(28)
+    ]
     recent_peak = max(recent, default=0)
     bars: list[str] = []
     points: list[str] = []
@@ -163,12 +193,11 @@ def render(total: int, days: list[dict[str, int | str]], source: str) -> str:
 
     sparkline = " ".join(points)
     bars_svg = "\n      ".join(bars)
-    safe_source = html.escape(source)
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420" role="img" aria-labelledby="title desc">
   <title id="title">ADAM OS profile — {mode.lower()} commit pulse</title>
   <desc id="desc">A GitHub-safe profile banner generated from real contribution activity: {total} contributions in the last year, {last_7} in the last seven days.</desc>
-  <metadata>source={safe_source}; user={USERNAME}; window=rolling-year</metadata>
+  <metadata>source=github-contribution-calendar; user={USERNAME}; window=rolling-year</metadata>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#070b12"/>

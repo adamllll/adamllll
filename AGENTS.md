@@ -24,7 +24,7 @@ This repository powers the GitHub profile README for `adamllll`.
 
 ## Automation
 
-- `.github/workflows/refresh-profile-hero.yml` refreshes the hero daily and commits only when its visual data changes.
+- `.github/workflows/refresh-profile-hero.yml` refreshes the hero daily, but the 28-day trace is week-anchored so idle days do not create needless bot commits.
 - `PROFILE_STATS_TOKEN` is optional. When configured as a repository secret, it can expose contribution data visible to that token; otherwise the workflow uses the GitHub-provided token/public calendar fallback.
 - Automated commits use `github-actions[bot]`, not the profile owner, so refreshes do not manufacture owner contributions.
 
