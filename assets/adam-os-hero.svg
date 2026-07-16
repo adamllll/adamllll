@@ -110,11 +110,11 @@
     <rect width="318" height="248" fill="#0b1020" stroke="#00d8ff" stroke-width="2" opacity="0.96"/>
     <rect x="0" y="0" width="318" height="36" fill="#14102a"/>
     <text x="16" y="24" fill="#00d8ff" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">SIGNAL BUS</text>
-    <text x="16" y="70" fill="#ff6ad5" font-family="Consolas, 'Courier New', monospace" font-size="14">TRACE   PUBLIC ONLY</text>
+    <text x="16" y="70" fill="#ff6ad5" font-family="Consolas, 'Courier New', monospace" font-size="14">TRACE   NATIVE GRID</text>
     <text x="16" y="102" fill="#72f1b8" font-family="Consolas, 'Courier New', monospace" font-size="14">STATUS  ONLINE</text>
-    <text x="16" y="134" fill="#f8f7ff" font-family="Consolas, 'Courier New', monospace" font-size="14">WINDOW  last 31 days</text>
-    <text x="16" y="166" fill="#f8f7ff" font-family="Consolas, 'Courier New', monospace" font-size="14">PRIVATE native calendar</text>
-    <text x="16" y="198" fill="#cfc9ff" font-family="Consolas, 'Courier New', monospace" font-size="14">MODE    rhythm not score</text>
+    <text x="16" y="134" fill="#f8f7ff" font-family="Consolas, 'Courier New', monospace" font-size="14">SOURCE  GitHub calendar</text>
+    <text x="16" y="166" fill="#f8f7ff" font-family="Consolas, 'Courier New', monospace" font-size="14">PRIVATE when enabled</text>
+    <text x="16" y="198" fill="#cfc9ff" font-family="Consolas, 'Courier New', monospace" font-size="14">ACTION  scroll below</text>
     <path d="M24 224 H294" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6 6"/>
     <circle cx="44" cy="224" r="5" fill="#00d8ff"/>
     <circle cx="116" cy="224" r="5" fill="#ff6ad5"/>

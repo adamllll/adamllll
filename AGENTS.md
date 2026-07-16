@@ -17,8 +17,8 @@ This repository powers the GitHub profile README for `adamllll`.
 
 - Current style: dark ADAM_OS public-desktop card / cyan-violet-magenta / Win95 chrome accents.
 - Tone: concise, technical, slightly atmospheric; signal over scoreboard.
-- Useful motifs: local SVG hero + telemetry frame, terminal snippets, clearly labelled public-only stats.
-- External graphs must state they are public/short-window; private work belongs to GitHub native calendar.
+- Useful motifs: local SVG hero + telemetry frame, terminal snippets.
+- Do not embed third-party contribution graphs. Contribution truth is the GitHub native calendar already rendered below the profile README.
 
 ## Verification
 
