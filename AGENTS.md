@@ -7,25 +7,27 @@ This repository powers the GitHub profile README for `adamllll`.
 ## Editing Rules
 
 - Primary surface: `README.md`.
-- Generated visual: `assets/adam-os-hero.svg`.
-- Generator: `scripts/render_profile_hero.py`; edit the generator rather than hand-editing the generated SVG.
+- Generated visual: `assets/profile-activity.svg`.
+- Generator: `scripts/render_profile_activity.py`; edit the generator rather than hand-editing the generated SVG.
 - Keep the profile concise and visual; it should work as a public landing card.
 - Prefer GitHub-compatible Markdown and simple inline HTML.
-- Avoid custom CSS blocks because GitHub strips most style tags.
+- Avoid custom CSS blocks because GitHub strips most style tags from README content.
 - Do not commit secrets, private URLs, API keys, or machine-local paths.
-- External image badges are acceptable when they are stable public badge/render services.
 
 ## Visual Direction
 
-- Current style: dark ADAM_OS public-desktop card / cyan-violet-magenta / Win95 chrome accents.
-- Tone: concise, technical, slightly atmospheric; signal over scoreboard.
-- The hero's status, accent, counters, and 28-day pulse are generated from real GitHub contribution data.
-- Do not add a separate README contribution section or third-party contribution graph. GitHub already renders its native contribution module below the README.
+- Current style: cobalt activity typography with a large `ADAM` word mark.
+- Each of the 52 vertical bands represents one week of real GitHub contribution activity.
+- Band brightness, the compact timeline, the yearly total, and recent pulses are data-driven.
+- Motion must remain self-contained in the SVG, use no JavaScript, and respect `prefers-reduced-motion`.
+- Tone: bold, direct, readable, and brand-led rather than dashboard-like.
+- Do not add a separate README contribution graph. GitHub already renders its native contribution module below the README.
 
 ## Automation
 
-- `.github/workflows/refresh-profile-hero.yml` refreshes the hero daily, but the 28-day trace is week-anchored so idle days do not create needless bot commits.
-- `PROFILE_STATS_TOKEN` is optional. When configured as a repository secret, it can expose contribution data visible to that token; otherwise the workflow uses the GitHub-provided token/public calendar fallback.
+- `.github/workflows/refresh-profile-activity.yml` refreshes the generated identity daily.
+- `PROFILE_STATS_TOKEN` is optional. When configured as a repository secret, it can expose contribution data visible to that token; otherwise the workflow uses the GitHub-provided token and public calendar fallback.
+- The workflow commits only when `assets/profile-activity.svg` actually changes.
 - Automated commits use `github-actions[bot]`, not the profile owner, so refreshes do not manufacture owner contributions.
 
 ## Verification
@@ -33,10 +35,10 @@ This repository powers the GitHub profile README for `adamllll`.
 Before commit:
 
 ```bash
-GH_TOKEN="$(gh auth token)" python3 scripts/render_profile_hero.py
-python3 -c "import xml.etree.ElementTree as ET; ET.parse('assets/adam-os-hero.svg')"
+GH_TOKEN="$(gh auth token)" python3 scripts/render_profile_activity.py
+python3 -c "import xml.etree.ElementTree as ET; ET.parse('assets/profile-activity.svg')"
 git diff --check
-git diff -- README.md AGENTS.md scripts/render_profile_hero.py .github/workflows/refresh-profile-hero.yml assets/adam-os-hero.svg
+git diff -- README.md AGENTS.md scripts/render_profile_activity.py .github/workflows/refresh-profile-activity.yml assets/profile-activity.svg
 git status --short
 ```
 

@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
+  <title id="title">ADAM contribution identity</title>
+  <desc id="desc">A living GitHub profile generated from real activity. The rolling year contains 240 contributions across 75 active days, with 5 contributions in the last seven days.</desc>
+  <metadata>source=github-contribution-calendar; user=adamllll; window=52-sunday-weeks</metadata>
+  <defs>
+    <style>
+      .activity-band, .timeline-band {
+        transform-box: fill-box;
+        transform-origin: center bottom;
+        animation: band-rise .85s cubic-bezier(.16,1,.3,1) both;
+      }
+      .activity-scan { animation: scan 7.40s cubic-bezier(.16,1,.3,1) infinite; }
+      .recent-band { animation: recent-pulse 2.8s ease-in-out infinite; }
+      @keyframes band-rise {
+        from { transform: scaleY(.03); opacity: 0; }
+        to { transform: scaleY(1); }
+      }
+      @keyframes scan {
+        0% { transform: translateX(-180px); opacity: 0; }
+        12% { opacity: .72; }
+        72% { opacity: .72; }
+        88%, 100% { transform: translateX(1660px); opacity: 0; }
+      }
+      @keyframes recent-pulse {
+        0%, 100% { opacity: 0; }
+        50% { opacity: .18; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .activity-band, .timeline-band, .activity-scan, .recent-band { animation: none; }
+      }
+    </style>
+    <clipPath id="adam-word">
+      <text x="52" y="366" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="380" font-weight="900" letter-spacing="-22">ADAM</text>
+    </clipPath>
+  </defs>
+
+  <rect width="1600" height="520" fill="#3156E6"/>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="68" y="54" fill="#F7F8FC" font-size="16" font-weight="800" letter-spacing="2">52 WEEKS SHAPE THE NAME</text>
+    <text x="1530" y="54" fill="#F7F8FC" font-size="16" font-weight="800" text-anchor="end">240 CONTRIBUTIONS</text>
+  </g>
+
+  <g clip-path="url(#adam-word)">
+    <rect class="activity-band" x="60.0" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.00s"/>
+    <rect class="activity-band" x="88.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.03s"/>
+    <rect class="activity-band" x="116.9" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.06s"/>
+    <rect class="activity-band" x="145.4" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.10s"/>
+    <rect class="activity-band" x="173.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.13s"/>
+    <rect class="activity-band" x="202.3" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.16s"/>
+    <rect class="activity-band" x="230.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.19s"/>
+    <rect class="activity-band" x="259.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.22s"/>
+    <rect class="activity-band" x="287.7" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.26s"/>
+    <rect class="activity-band" x="316.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.29s"/>
+    <rect class="activity-band" x="344.6" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.32s"/>
+    <rect class="activity-band" x="373.1" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.35s"/>
+    <rect class="activity-band" x="401.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.38s"/>
+    <rect class="activity-band" x="430.0" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.42s"/>
+    <rect class="activity-band" x="458.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.45s"/>
+    <rect class="activity-band" x="486.9" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.48s"/>
+    <rect class="activity-band" x="515.4" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.51s"/>
+    <rect class="activity-band" x="543.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.54s"/>
+    <rect class="activity-band" x="572.3" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.58s"/>
+    <rect class="activity-band" x="600.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.83" style="animation-delay:0.61s"/>
+    <rect class="activity-band" x="629.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.97" style="animation-delay:0.64s"/>
+    <rect class="activity-band" x="657.7" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.83" style="animation-delay:0.67s"/>
+    <rect class="activity-band" x="686.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.93" style="animation-delay:0.70s"/>
+    <rect class="activity-band" x="714.6" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.94" style="animation-delay:0.74s"/>
+    <rect class="activity-band" x="743.1" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="1.00" style="animation-delay:0.77s"/>
+    <rect class="activity-band" x="771.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.71" style="animation-delay:0.80s"/>
+    <rect class="activity-band" x="800.0" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.73" style="animation-delay:0.83s"/>
+    <rect class="activity-band" x="828.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.73" style="animation-delay:0.86s"/>
+    <rect class="activity-band" x="856.9" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.73" style="animation-delay:0.90s"/>
+    <rect class="activity-band" x="885.4" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.54" style="animation-delay:0.93s"/>
+    <rect class="activity-band" x="913.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:0.96s"/>
+    <rect class="activity-band" x="942.3" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.65" style="animation-delay:0.99s"/>
+    <rect class="activity-band" x="970.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.69" style="animation-delay:1.02s"/>
+    <rect class="activity-band" x="999.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.65" style="animation-delay:1.06s"/>
+    <rect class="activity-band" x="1027.7" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.09s"/>
+    <rect class="activity-band" x="1056.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.12s"/>
+    <rect class="activity-band" x="1084.6" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.69" style="animation-delay:1.15s"/>
+    <rect class="activity-band" x="1113.1" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.57" style="animation-delay:1.18s"/>
+    <rect class="activity-band" x="1141.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.78" style="animation-delay:1.22s"/>
+    <rect class="activity-band" x="1170.0" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.54" style="animation-delay:1.25s"/>
+    <rect class="activity-band" x="1198.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.28s"/>
+    <rect class="activity-band" x="1226.9" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.31s"/>
+    <rect class="activity-band" x="1255.4" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.34s"/>
+    <rect class="activity-band" x="1283.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.38s"/>
+    <rect class="activity-band" x="1312.3" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.41s"/>
+    <rect class="activity-band" x="1340.8" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.44s"/>
+    <rect class="activity-band" x="1369.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.57" style="animation-delay:1.47s"/>
+    <rect class="activity-band" x="1397.7" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.50s"/>
+    <rect class="activity-band" x="1426.2" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.54s"/>
+    <rect class="activity-band" x="1454.6" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.57s"/>
+    <rect class="activity-band" x="1483.1" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.18" style="animation-delay:1.60s"/>
+    <rect class="activity-band" x="1511.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0.63" style="animation-delay:1.63s"/>
+    <rect class="recent-band" x="1511.5" y="76" width="29.5" height="306" fill="#F7F8FC" opacity="0"/>
+    <rect class="activity-scan" x="-180" y="74" width="90" height="312" fill="#101218" opacity=".72"/>
+  </g>
+  <text x="52" y="366" fill="none" stroke="#101218" stroke-width="3" stroke-opacity=".34" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="380" font-weight="900" letter-spacing="-22">ADAM</text>
+
+  <g>
+    <rect class="timeline-band" x="60.0" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.00s"/>
+  <rect class="timeline-band" x="88.5" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.03s"/>
+  <rect class="timeline-band" x="116.9" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.06s"/>
+  <rect class="timeline-band" x="145.4" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.10s"/>
+  <rect class="timeline-band" x="173.8" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.13s"/>
+  <rect class="timeline-band" x="202.3" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.16s"/>
+  <rect class="timeline-band" x="230.8" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.19s"/>
+  <rect class="timeline-band" x="259.2" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.22s"/>
+  <rect class="timeline-band" x="287.7" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.26s"/>
+  <rect class="timeline-band" x="316.2" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.29s"/>
+  <rect class="timeline-band" x="344.6" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.32s"/>
+  <rect class="timeline-band" x="373.1" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.35s"/>
+  <rect class="timeline-band" x="401.5" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.38s"/>
+  <rect class="timeline-band" x="430.0" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.42s"/>
+  <rect class="timeline-band" x="458.5" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.45s"/>
+  <rect class="timeline-band" x="486.9" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.48s"/>
+  <rect class="timeline-band" x="515.4" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.51s"/>
+  <rect class="timeline-band" x="543.8" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.54s"/>
+  <rect class="timeline-band" x="572.3" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.58s"/>
+  <rect class="timeline-band" x="600.8" y="416" width="25.5" height="14" fill="#F7F8FC" opacity="0.83" style="animation-delay:0.61s"/>
+  <rect class="timeline-band" x="629.2" y="409" width="25.5" height="21" fill="#F7F8FC" opacity="0.97" style="animation-delay:0.64s"/>
+  <rect class="timeline-band" x="657.7" y="416" width="25.5" height="14" fill="#F7F8FC" opacity="0.83" style="animation-delay:0.67s"/>
+  <rect class="timeline-band" x="686.2" y="411" width="25.5" height="19" fill="#F7F8FC" opacity="0.93" style="animation-delay:0.70s"/>
+  <rect class="timeline-band" x="714.6" y="410" width="25.5" height="20" fill="#F7F8FC" opacity="0.94" style="animation-delay:0.74s"/>
+  <rect class="timeline-band" x="743.1" y="407" width="25.5" height="23" fill="#F7F8FC" opacity="1.00" style="animation-delay:0.77s"/>
+  <rect class="timeline-band" x="771.5" y="420" width="25.5" height="10" fill="#F7F8FC" opacity="0.71" style="animation-delay:0.80s"/>
+  <rect class="timeline-band" x="800.0" y="419" width="25.5" height="11" fill="#F7F8FC" opacity="0.73" style="animation-delay:0.83s"/>
+  <rect class="timeline-band" x="828.5" y="419" width="25.5" height="11" fill="#F7F8FC" opacity="0.73" style="animation-delay:0.86s"/>
+  <rect class="timeline-band" x="856.9" y="419" width="25.5" height="11" fill="#F7F8FC" opacity="0.73" style="animation-delay:0.90s"/>
+  <rect class="timeline-band" x="885.4" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.54" style="animation-delay:0.93s"/>
+  <rect class="timeline-band" x="913.8" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:0.96s"/>
+  <rect class="timeline-band" x="942.3" y="422" width="25.5" height="8" fill="#F7F8FC" opacity="0.65" style="animation-delay:0.99s"/>
+  <rect class="timeline-band" x="970.8" y="420" width="25.5" height="10" fill="#F7F8FC" opacity="0.69" style="animation-delay:1.02s"/>
+  <rect class="timeline-band" x="999.2" y="422" width="25.5" height="8" fill="#F7F8FC" opacity="0.65" style="animation-delay:1.06s"/>
+  <rect class="timeline-band" x="1027.7" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.09s"/>
+  <rect class="timeline-band" x="1056.2" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.12s"/>
+  <rect class="timeline-band" x="1084.6" y="420" width="25.5" height="10" fill="#F7F8FC" opacity="0.69" style="animation-delay:1.15s"/>
+  <rect class="timeline-band" x="1113.1" y="423" width="25.5" height="7" fill="#F7F8FC" opacity="0.57" style="animation-delay:1.18s"/>
+  <rect class="timeline-band" x="1141.5" y="417" width="25.5" height="13" fill="#F7F8FC" opacity="0.78" style="animation-delay:1.22s"/>
+  <rect class="timeline-band" x="1170.0" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.54" style="animation-delay:1.25s"/>
+  <rect class="timeline-band" x="1198.5" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.28s"/>
+  <rect class="timeline-band" x="1226.9" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.31s"/>
+  <rect class="timeline-band" x="1255.4" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.34s"/>
+  <rect class="timeline-band" x="1283.8" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.38s"/>
+  <rect class="timeline-band" x="1312.3" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.41s"/>
+  <rect class="timeline-band" x="1340.8" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.44s"/>
+  <rect class="timeline-band" x="1369.2" y="423" width="25.5" height="7" fill="#F7F8FC" opacity="0.57" style="animation-delay:1.47s"/>
+  <rect class="timeline-band" x="1397.7" y="424" width="25.5" height="6" fill="#F7F8FC" opacity="0.49" style="animation-delay:1.50s"/>
+  <rect class="timeline-band" x="1426.2" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.54s"/>
+  <rect class="timeline-band" x="1454.6" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.57s"/>
+  <rect class="timeline-band" x="1483.1" y="426" width="25.5" height="4" fill="#F7F8FC" opacity="0.28" style="animation-delay:1.60s"/>
+  <rect class="timeline-band" x="1511.5" y="422" width="25.5" height="8" fill="#F7F8FC" opacity="0.63" style="animation-delay:1.63s"/>
+  </g>
+  <line x1="60" y1="434" x2="1540" y2="434" stroke="#F7F8FC" stroke-opacity=".32"/>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="68" y="475" fill="#F7F8FC" font-size="18" font-weight="700">Each vertical band is one week. Brighter bands mean more contributions.</text>
+    <rect x="1160" y="447" width="372" height="54" fill="#F7F8FC"/>
+    <text x="1192" y="481" fill="#101218" font-size="17" font-weight="800" letter-spacing=".8">OPEN PERSONAL SITE  ↗</text>
+  </g>
+</svg>
