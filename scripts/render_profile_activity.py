@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Render the animated profile identity from real GitHub contributions.
+"""Render a vaporwave pixel city from real GitHub contributions.
 
-The output is a self-contained, GitHub-safe SVG. Contribution data controls
-the 52 bands inside the ADAM word mark and the compact timeline below it.
+The output is a self-contained, GitHub-safe SVG. Each of the 52 towers maps
+to one week; tower height and lit windows increase with contribution activity.
 """
 
 from __future__ import annotations
@@ -181,6 +181,130 @@ def activity_strength(value: int, peak: int) -> float:
     return min(1.0, math.sqrt(value / max(1, peak)))
 
 
+BASE_Y = 418
+
+
+def activity_palette(value: int) -> tuple[str, str]:
+    if value == 0:
+        return "#342b43", "#0d1117"
+    if value <= 5:
+        return "#06ffa5", "#0b151b"
+    if value <= 14:
+        return "#00d8ff", "#0c1420"
+    if value <= 24:
+        return "#c774e8", "#151225"
+    return "#ff6ad5", "#191221"
+
+
+def tower_geometry(index: int, value: int, peak: int) -> tuple[int, int, int, str, str]:
+    x = 70 + index * 28
+    amount = activity_strength(value, peak)
+    height = 14 if value == 0 else 42 + round(218 * amount)
+    edge, body = activity_palette(value)
+    return x, BASE_Y - height, height, edge, body
+
+
+def render_reflection(index: int, value: int, peak: int) -> str:
+    x, y, height, edge, body = tower_geometry(index, value, peak)
+    cap = 7 if height >= 50 else 0
+    return (
+        f'<g transform="translate(0 {BASE_Y * 2}) scale(1 -1)">'
+        f'<rect x="{x}" y="{y + cap}" width="21" height="{height - cap}" '
+        f'fill="{body}" stroke="{edge}" stroke-width="2"/>'
+        + (
+            f'<rect x="{x + 4}" y="{y}" width="13" height="{cap + 2}" '
+            f'fill="{body}" stroke="{edge}" stroke-width="2"/>'
+            if cap
+            else ""
+        )
+        + "</g>"
+    )
+
+
+def render_tower(index: int, value: int, peak: int, *, latest: bool) -> str:
+    x, y, height, edge, body = tower_geometry(index, value, peak)
+    amount = activity_strength(value, peak)
+    cap = 7 if height >= 50 else 0
+    delay = index * 0.019
+    contribution_label = "contribution" if value == 1 else "contributions"
+    parts = [
+        f'<g class="tower" style="animation-delay:{delay:.3f}s">',
+        f'  <title>Week {index + 1}: {value} {contribution_label}</title>',
+        f'  <rect x="{x}" y="{y + cap}" width="21" height="{height - cap}" '
+        f'fill="{body}" stroke="{edge}" stroke-width="2" '
+        f'opacity="{0.42 if value == 0 else 0.98}"/>',
+    ]
+    if cap:
+        parts.append(
+            f'  <rect x="{x + 4}" y="{y}" width="13" height="{cap + 2}" '
+            f'fill="{body}" stroke="{edge}" stroke-width="2"/>'
+        )
+
+    if value > 0:
+        rows = max(1, (height - 21) // 12)
+        slots = rows * 2
+        lit_count = max(1, round(amount * slots))
+        order = sorted(range(slots), key=lambda slot: (slot * 19 + index * 11) % max(1, slots))
+        lit_slots = set(order[:lit_count])
+        colors = ("#00d8ff", "#ff6ad5", "#fffd82", "#06ffa5")
+        for slot in range(slots):
+            row, column = divmod(slot, 2)
+            window_y = BASE_Y - 13 - row * 12
+            if window_y <= y + 9:
+                continue
+            window_x = x + 4 + column * 9
+            if slot in lit_slots:
+                color = colors[(slot + index) % len(colors)]
+                class_attr = ' class="current-window"' if latest else ""
+                parts.append(
+                    f'  <rect{class_attr} x="{window_x}" y="{window_y}" '
+                    f'width="4" height="6" fill="{color}"/>'
+                )
+            else:
+                parts.append(
+                    f'  <rect x="{window_x}" y="{window_y}" width="4" height="6" '
+                    'fill="#332344" opacity=".55"/>'
+                )
+
+    if value >= 15:
+        parts.extend(
+            [
+                f'  <rect x="{x + 10}" y="{y - 11}" width="2" height="11" fill="{edge}"/>',
+                f'  <rect class="beacon" x="{x + 7}" y="{y - 16}" '
+                'width="8" height="7" fill="#fffd82"/>',
+            ]
+        )
+
+    if latest and value > 0:
+        parts.append(
+            f'  <path class="now-pulse" d="M{x - 5} {y - 7}h31v{height + 14}h-31z" '
+            'fill="none" stroke="#06ffa5" stroke-width="2"/>'
+        )
+    parts.append("</g>")
+    return "\n".join(parts)
+
+
+def timeline_ticks(reference: date | None = None) -> list[tuple[int, str, str]]:
+    latest = reference or date.today()
+    days_since_sunday = (latest.weekday() + 1) % 7
+    current_week_start = latest - timedelta(days=days_since_sunday)
+    first_week_start = current_week_start - timedelta(weeks=51)
+
+    ticks: list[tuple[int, str, str]] = []
+    previous_year: int | None = None
+    for index in (0, 13, 26, 39):
+        week_start = first_week_start + timedelta(weeks=index)
+        label = week_start.strftime("%b").upper()
+        if previous_year is None or week_start.year != previous_year:
+            label += f" '{week_start.strftime('%y')}"
+        anchor = "start" if index == 0 else "middle"
+        ticks.append((70 + index * 28, label, anchor))
+        previous_year = week_start.year
+
+    ticks.append((70 + 51 * 28 + 21, "NOW", "end"))
+    return ticks
+
+
 def activity_from_days(
     total: int,
     days: list[dict[str, int | str]],
@@ -228,106 +352,134 @@ def load_activity() -> ActivityData:
 
 
 def render(activity: ActivityData) -> str:
-    total = activity.total
     weekly = activity.weekly
     weekly_peak = max(weekly, default=1)
-    active_days = activity.active_days
-    last_7 = activity.last_7
-    scan_duration = max(4.8, 8.2 - min(last_7, 18) * 0.16)
+    rolling_total = sum(weekly)
+    safe_username = html.escape(USERNAME)
+    towers = "\n      ".join(
+        render_tower(index, value, weekly_peak, latest=index == len(weekly) - 1)
+        for index, value in enumerate(weekly)
+    )
+    reflections = "\n      ".join(
+        render_reflection(index, value, weekly_peak)
+        for index, value in enumerate(weekly)
+    )
+    ticks = "\n      ".join(
+        f'<g><rect x="{x}" y="426" width="2" height="8" '
+        f'fill="{("#06ffa5" if label == "NOW" else "#7d668f")}"/>'
+        f'<text x="{x}" y="456" '
+        f'fill="{("#06ffa5" if label == "NOW" else "#a997b7")}" '
+        f'font-size="17" font-weight="700" text-anchor="{anchor}">{label}</text></g>'
+        for x, label, anchor in timeline_ticks()
+    )
 
-    letter_bars: list[str] = []
-    timeline_bars: list[str] = []
-    recent_overlays: list[str] = []
-    bar_width = 1480 / len(weekly)
-
-    for index, value in enumerate(weekly):
-        strength = activity_strength(value, weekly_peak)
-        opacity = 0.18 if value == 0 else 0.38 + strength * 0.62
-        x = 60 + index * bar_width
-        delay = index * 0.032
-        letter_bars.append(
-            f'<rect class="activity-band" x="{x:.1f}" y="76" width="{bar_width + 1:.1f}" '
-            f'height="306" fill="#F7F8FC" opacity="{opacity:.2f}" style="animation-delay:{delay:.2f}s"/>'
-        )
-
-        tick_height = 4 if value == 0 else 5 + round(18 * value / max(1, weekly_peak))
-        tick_y = 430 - tick_height
-        timeline_bars.append(
-            f'<rect class="timeline-band" x="{x:.1f}" y="{tick_y}" width="{max(3, bar_width - 3):.1f}" '
-            f'height="{tick_height}" fill="#F7F8FC" opacity="{max(.28, opacity):.2f}" '
-            f'style="animation-delay:{delay:.2f}s"/>'
-        )
-
-        if index >= len(weekly) - 4 and value > 0:
-            recent_overlays.append(
-                f'<rect class="recent-band" x="{x:.1f}" y="76" width="{bar_width + 1:.1f}" '
-                f'height="306" fill="#F7F8FC" opacity="0"/>'
-            )
-
-    letter_svg = "\n    ".join(letter_bars)
-    timeline_svg = "\n  ".join(timeline_bars)
-    recent_svg = "\n    ".join(recent_overlays)
-
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520" role="img" aria-labelledby="title desc">
-  <title id="title">ADAM contribution identity</title>
-  <desc id="desc">A living GitHub profile generated from real activity. The rolling year contains {total} contributions across {active_days} active days, with {last_7} contributions in the last seven days.</desc>
-  <metadata>source=github-contribution-calendar; user={USERNAME}; window=52-sunday-weeks</metadata>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">{safe_username}'s contribution city</title>
+  <desc id="desc">A vaporwave pixel skyline generated from {rolling_total} contributions across {activity.active_days} active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain {activity.last_7} contributions.</desc>
+  <metadata>source={activity.source}; user={safe_username}; window=52-sunday-weeks; calendar-total={activity.total}; rolling-total={rolling_total}</metadata>
   <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset=".6" stop-color="#0e1019"/>
+      <stop offset="1" stop-color="#151020"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffd82"/>
+      <stop offset=".45" stop-color="#ff9871"/>
+      <stop offset="1" stop-color="#ff4db8"/>
+    </linearGradient>
+    <linearGradient id="reflection-alpha" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="stars" width="104" height="76" patternUnits="userSpaceOnUse">
+      <rect x="15" y="13" width="2" height="2" fill="#ffffff" opacity=".42"/>
+      <rect x="67" y="21" width="3" height="3" fill="#00d8ff" opacity=".25"/>
+      <rect x="39" y="57" width="2" height="2" fill="#ff6ad5" opacity=".34"/>
+      <rect x="91" y="65" width="2" height="2" fill="#ffffff" opacity=".2"/>
+    </pattern>
+    <pattern id="scanlines" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="4" fill="#000000" opacity="0"/>
+      <rect y="4" width="8" height="4" fill="#000000" opacity=".1"/>
+    </pattern>
+    <clipPath id="pixel-sun">
+      <path d="M1184 116h88v8h32v8h24v16h16v16h8v24h8v32h8v72h-8v32h-8v24h-16v16h-24v8h-32v8h-88v-8h-32v-8h-24v-16h-16v-24h-8v-32h-8v-72h8v-32h8v-24h16v-16h24v-8h32v-8z"/>
+    </clipPath>
+    <mask id="reflection-mask">
+      <rect x="0" y="418" width="1600" height="142" fill="url(#reflection-alpha)"/>
+    </mask>
+    <filter id="sun-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
     <style>
-      .activity-band, .timeline-band {{
-        transform-box: fill-box;
-        transform-origin: center bottom;
-        animation: band-rise .85s cubic-bezier(.16,1,.3,1) both;
-      }}
-      .activity-scan {{ animation: scan {scan_duration:.2f}s cubic-bezier(.16,1,.3,1) infinite; }}
-      .recent-band {{ animation: recent-pulse 2.8s ease-in-out infinite; }}
-      @keyframes band-rise {{
-        from {{ transform: scaleY(.03); opacity: 0; }}
-        to {{ transform: scaleY(1); }}
-      }}
-      @keyframes scan {{
-        0% {{ transform: translateX(-180px); opacity: 0; }}
-        12% {{ opacity: .72; }}
-        72% {{ opacity: .72; }}
-        88%, 100% {{ transform: translateX(1660px); opacity: 0; }}
-      }}
-      @keyframes recent-pulse {{
-        0%, 100% {{ opacity: 0; }}
-        50% {{ opacity: .18; }}
-      }}
+      text {{ font-family: "Courier New", Consolas, monospace; }}
+      .tower {{ transform-box: fill-box; transform-origin: center bottom; animation: city-boot .68s steps(6, end) both; }}
+      .beacon {{ animation: beacon 3.2s steps(2, end) infinite; }}
+      .now-pulse {{ animation: now-pulse 3.2s steps(4, end) infinite; }}
+      .current-window {{ animation: current-window 3.2s steps(2, end) infinite; }}
+      @keyframes city-boot {{ from {{ transform: scaleY(.04); opacity: .15; }} to {{ transform: scaleY(1); opacity: 1; }} }}
+      @keyframes beacon {{ 0%, 42%, 60%, 100% {{ opacity: 1; }} 51% {{ opacity: .18; }} }}
+      @keyframes now-pulse {{ 0%, 100% {{ opacity: .16; }} 50% {{ opacity: .78; }} }}
+      @keyframes current-window {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: .38; }} }}
       @media (prefers-reduced-motion: reduce) {{
-        .activity-band, .timeline-band, .activity-scan, .recent-band {{ animation: none; }}
+        .tower, .beacon, .now-pulse, .current-window {{ animation: none; }}
       }}
     </style>
-    <clipPath id="adam-word">
-      <text x="52" y="366" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="380" font-weight="900" letter-spacing="-22">ADAM</text>
-    </clipPath>
   </defs>
 
-  <rect width="1600" height="520" fill="#3156E6"/>
+  <rect width="1600" height="560" fill="url(#night)"/>
+  <rect width="1600" height="560" fill="url(#stars)"/>
 
-  <g font-family="Arial, Helvetica, sans-serif">
-    <text x="68" y="54" fill="#F7F8FC" font-size="16" font-weight="800" letter-spacing="2">52 WEEKS SHAPE THE NAME</text>
-    <text x="1530" y="54" fill="#F7F8FC" font-size="16" font-weight="800" text-anchor="end">{total} CONTRIBUTIONS</text>
+  <g clip-path="url(#pixel-sun)" opacity=".94" filter="url(#sun-glow)">
+    <rect x="1080" y="106" width="320" height="300" fill="url(#sun)"/>
+    <rect x="1070" y="224" width="340" height="8" fill="#11101a"/>
+    <rect x="1070" y="244" width="340" height="10" fill="#11101a"/>
+    <rect x="1070" y="268" width="340" height="13" fill="#11101a"/>
+    <rect x="1070" y="298" width="340" height="17" fill="#11101a"/>
+    <rect x="1070" y="336" width="340" height="22" fill="#11101a"/>
   </g>
 
-  <g clip-path="url(#adam-word)">
-    {letter_svg}
-    {recent_svg}
-    <rect class="activity-scan" x="-180" y="74" width="90" height="312" fill="#101218" opacity=".72"/>
+  <text x="67" y="62" fill="#00d8ff" font-size="21" font-weight="700">{safe_username}</text>
+  <text x="67" y="110" fill="#00d8ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" opacity=".52">COMMIT CITY</text>
+  <text x="73" y="110" fill="#ff6ad5" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" opacity=".52">COMMIT CITY</text>
+  <text x="70" y="110" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900">COMMIT CITY</text>
+  <text x="70" y="141" fill="#a997b7" font-size="18">52 TOWERS. ONE ROLLING YEAR.</text>
+
+  <text x="1530" y="62" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">{rolling_total} CONTRIBUTIONS</text>
+  <text x="1530" y="92" fill="#a997b7" font-size="17" text-anchor="end">HEIGHT + WINDOWS FOLLOW REAL ACTIVITY</text>
+
+  <path d="M0 416V384h42v-20h34v12h38v-42h32v26h36v-18h34v36h30v-60h36v30h34v-22h36v46h32v-28h36v72z" fill="#0b0e14" opacity=".55"/>
+  <path d="M872 416v-36h32v-32h34v18h38v-52h34v38h34v-24h38v42h32v-66h38v28h34v-40h38v58h34v-32h38v98z" fill="#10101a" opacity=".48"/>
+
+  <path d="M0 418h1600v142H0z" fill="#24152f" opacity=".18"/>
+  <g fill="none" stroke="#9d5fc4" stroke-width="2" opacity=".34">
+    <path d="M800 418L52 560M800 418L312 560M800 418L530 560M800 418L1070 560M800 418L1288 560M800 418L1548 560"/>
+    <path d="M0 430h1600M0 450h1600M0 480h1600M0 516h1600M0 558h1600"/>
   </g>
-  <text x="52" y="366" fill="none" stroke="#101218" stroke-width="3" stroke-opacity=".34" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="380" font-weight="900" letter-spacing="-22">ADAM</text>
+  <line x1="0" y1="418" x2="1600" y2="418" stroke="#ff6ad5" stroke-width="3" opacity=".56"/>
+
+  <g mask="url(#reflection-mask)" opacity=".3">
+      {reflections}
+  </g>
 
   <g>
-    {timeline_svg}
+      {towers}
   </g>
-  <line x1="60" y1="434" x2="1540" y2="434" stroke="#F7F8FC" stroke-opacity=".32"/>
 
-  <g font-family="Arial, Helvetica, sans-serif">
-    <text x="68" y="475" fill="#F7F8FC" font-size="18" font-weight="700">Each vertical band is one week. Brighter bands mean more contributions.</text>
-    <rect x="1160" y="447" width="372" height="54" fill="#F7F8FC"/>
-    <text x="1192" y="481" fill="#101218" font-size="17" font-weight="800" letter-spacing=".8">OPEN PERSONAL SITE  ↗</text>
+  <g>
+      {ticks}
   </g>
+
+  <text x="70" y="536" fill="#b7a9c2" font-size="17" font-weight="700">TOWER HEIGHT + LIT WINDOWS = WEEKLY COMMITS</text>
+  <g transform="translate(1116 519)">
+    <rect width="15" height="15" fill="#342b43"/><text x="26" y="14" fill="#a997b7" font-size="16">0</text>
+    <rect x="82" width="15" height="15" fill="#06ffa5"/><text x="108" y="14" fill="#a997b7" font-size="16">LOW</text>
+    <rect x="190" width="15" height="15" fill="#00d8ff"/><text x="216" y="14" fill="#a997b7" font-size="16">BUSY</text>
+    <rect x="312" width="15" height="15" fill="#ff6ad5"/><text x="338" y="14" fill="#a997b7" font-size="16">PEAK</text>
+  </g>
+
+  <rect width="1600" height="560" fill="url(#scanlines)" pointer-events="none"/>
 </svg>
 '''
 
@@ -344,6 +496,7 @@ def main() -> None:
                 "user": USERNAME,
                 "source": activity.source,
                 "total": activity.total,
+                "rolling_total": sum(activity.weekly),
                 "active_days": activity.active_days,
                 "last_30": activity.last_30,
                 "last_7": activity.last_7,
