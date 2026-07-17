@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
   <title id="title">adamllll's contribution city</title>
-  <desc id="desc">A vaporwave pixel skyline generated from 241 contributions across 75 active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain 6 contributions.</desc>
-  <metadata>source=github-graphql-viewer; user=adamllll; window=52-sunday-weeks; calendar-total=241; rolling-total=241</metadata>
+  <desc id="desc">A vaporwave pixel skyline generated from 242 contributions across 75 active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain 7 contributions.</desc>
+  <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=242; rolling-total=242</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#0d1117"/>
@@ -71,7 +71,7 @@
   <text x="70" y="110" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900">COMMIT CITY</text>
   <text x="70" y="141" fill="#a997b7" font-size="18">52 TOWERS. ONE ROLLING YEAR.</text>
 
-  <text x="1530" y="62" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">241 CONTRIBUTIONS</text>
+  <text x="1530" y="62" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">242 CONTRIBUTIONS</text>
   <text x="1530" y="92" fill="#a997b7" font-size="17" text-anchor="end">HEIGHT + WINDOWS FOLLOW REAL ACTIVITY</text>
 
   <path d="M0 416V384h42v-20h34v12h38v-42h32v26h36v-18h34v36h30v-60h36v30h34v-22h36v46h32v-28h36v72z" fill="#0b0e14" opacity=".55"/>
@@ -136,7 +136,7 @@
       <g transform="translate(0 836) scale(1 -1)"><rect x="1414" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
       <g transform="translate(0 836) scale(1 -1)"><rect x="1442" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
       <g transform="translate(0 836) scale(1 -1)"><rect x="1470" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1498" y="287" width="21" height="131" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1502" y="280" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 836) scale(1 -1)"><rect x="1498" y="279" width="21" height="139" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1502" y="272" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
   </g>
 
   <g>
@@ -885,14 +885,14 @@
   <rect x="1470" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
       <g class="tower" style="animation-delay:0.969s">
-  <title>Week 52: 6 contributions</title>
-  <rect x="1498" y="287" width="21" height="131" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="1502" y="280" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <title>Week 52: 7 contributions</title>
+  <rect x="1498" y="279" width="21" height="139" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="1502" y="272" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
   <rect class="current-window" x="1502" y="405" width="4" height="6" fill="#06ffa5"/>
   <rect class="current-window" x="1511" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect class="current-window" x="1502" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect class="current-window" x="1511" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect class="current-window" x="1502" y="381" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1502" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1511" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1502" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
   <rect x="1511" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
   <rect x="1502" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
   <rect x="1511" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
@@ -900,13 +900,15 @@
   <rect x="1511" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
   <rect x="1502" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
   <rect x="1511" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1502" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1511" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1502" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="current-window" x="1502" y="333" width="4" height="6" fill="#06ffa5"/>
+  <rect class="current-window" x="1511" y="333" width="4" height="6" fill="#00d8ff"/>
+  <rect class="current-window" x="1502" y="321" width="4" height="6" fill="#ff6ad5"/>
   <rect class="current-window" x="1511" y="321" width="4" height="6" fill="#fffd82"/>
   <rect class="current-window" x="1502" y="309" width="4" height="6" fill="#06ffa5"/>
   <rect class="current-window" x="1511" y="309" width="4" height="6" fill="#00d8ff"/>
-  <path class="now-pulse" d="M1493 273h31v152h-31z" fill="none" stroke="#06ffa5" stroke-width="2"/>
+  <rect class="current-window" x="1502" y="297" width="4" height="6" fill="#ff6ad5"/>
+  <rect class="current-window" x="1511" y="297" width="4" height="6" fill="#fffd82"/>
+  <path class="now-pulse" d="M1493 265h31v160h-31z" fill="none" stroke="#06ffa5" stroke-width="2"/>
 </g>
   </g>
 
