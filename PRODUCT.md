@@ -18,13 +18,13 @@ Turn the profile README into a memorable, self-updating visual identity. Success
 
 ## Positioning
 
-The profile is a living city built from one rolling year of real GitHub contribution activity.
+The profile is a living identity where 52 weeks of real GitHub activity shape the name ADAM.
 
 ## Conversion & proof
 
 - Primary CTA: open `https://home.adamllll.com/` by clicking the profile poster.
 - Secondary fallback: continue into GitHub's native profile content below the README.
-- The line a visitor remembers after 10 seconds: ADAM's GitHub activity becomes a living city.
+- The line a visitor remembers after 10 seconds: 52 weeks of activity shape ADAM.
 - Belief ladder: the activity is real, the visual updates automatically, the restraint is intentional, and the personal website is available without interrupting the artwork.
 - Proof on hand: 52 weeks of contribution data, a daily GitHub Actions refresh, and a data-driven SVG generator.
 
@@ -37,11 +37,12 @@ Bold, kinetic, restrained. The profile should feel like a precise night-city sig
 - Badge walls, skill clouds, project cards, and filler sections added only to make the profile look complete.
 - Generic hacker terminals, constant glitching, excessive neon glow, or disconnected cyberpunk decoration.
 - Dashboard layouts that duplicate GitHub's native contribution graph.
+- Compositions where ADAM is decoration beside a separate contribution visualization.
 - A large or brightly styled personal-website CTA that competes with the city.
 
 ## Design Principles
 
-- Make the contribution city the single memorable idea.
+- Make ADAM and the contribution visualization the same object.
 - Use real activity data as both content and composition.
 - Orchestrate one strong load sequence, then settle into quiet ambient motion.
 - Keep every supporting label functional and subordinate.

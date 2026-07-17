@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-18T01:51:02+08:00",
+  "generatedAt": "2026-07-18T02:29:15+08:00",
   "title": "Design System: ADAM Commit City",
   "extensions": {
     "colorMeta": {
@@ -16,6 +16,12 @@
         "canonical": "#315ee8",
         "tonalRamp": ["#0c193f", "#132766", "#1d3b99", "#315ee8", "#6588ef", "#9cb3f5", "#ccd8fa", "#eef2ff"]
       },
+      "wordmark-deep": {
+        "role": "primary",
+        "displayName": "Deep Wordmark",
+        "canonical": "#13275a",
+        "tonalRamp": ["#070d20", "#0d1838", "#13275a", "#1d3b80", "#315ea8", "#6f8fd0", "#b6c7e8", "#edf2fb"]
+      },
       "electric-cyan": {
         "role": "secondary",
         "displayName": "Electric Cyan",
@@ -27,6 +33,12 @@
         "displayName": "Activity Magenta",
         "canonical": "#ff6ad5",
         "tonalRamp": ["#3b102f", "#681c54", "#9c2b7e", "#d348ad", "#ff6ad5", "#ff9be4", "#ffc8f0", "#fff0fb"]
+      },
+      "activity-violet": {
+        "role": "tertiary",
+        "displayName": "Activity Violet",
+        "canonical": "#c774e8",
+        "tonalRamp": ["#2b1538", "#49225f", "#6f338f", "#9a50bf", "#c774e8", "#dba2ef", "#ebcdf7", "#faf0fd"]
       }
     },
     "typographyMeta": {
@@ -36,7 +48,7 @@
       },
       "label": {
         "displayName": "City Signal",
-        "purpose": "Contribution labels, timeline, legend, and website signal."
+        "purpose": "Contribution labels, timeline, footer explanation, and website signal."
       }
     },
     "shadows": [],
@@ -44,17 +56,22 @@
       {
         "name": "ease-entry",
         "value": "cubic-bezier(.16, 1, .3, 1)",
-        "purpose": "Poster and boot-scan entry motion."
+        "purpose": "Poster fade-in and wordmark outline-lock entry motion."
       },
       {
-        "name": "tower-boot",
-        "value": ".9s steps(7, end)",
-        "purpose": "Chronological weekly tower construction."
+        "name": "band-rise",
+        "value": ".85s steps(7, end)",
+        "purpose": "Chronological construction of the 52 weekly bands."
       },
       {
-        "name": "city-ambient",
-        "value": "3.8s-18s stepped loops",
-        "purpose": "Sparse windows, beacons, signals, reflections, and stars after boot."
+        "name": "activity-scan",
+        "value": "7.4s-10.8s data-driven loop",
+        "purpose": "A periodic scan whose duration responds to recent activity."
+      },
+      {
+        "name": "recent-pulse",
+        "value": "3.4s steps(4, end)",
+        "purpose": "Low-frequency pulse on the four most recent active weeks."
       }
     ],
     "breakpoints": []
@@ -64,19 +81,20 @@
       "name": "Linked Activity Poster",
       "kind": "custom",
       "refersTo": "activity-poster",
-      "description": "The responsive GitHub profile poster and personal-site entry.",
-      "html": "<a class=\"ds-profile-poster\" href=\"https://home.adamllll.com/\" aria-label=\"Visit adamllll's personal website\"><img src=\"./assets/profile-activity.svg\" alt=\"Animated 52-week GitHub contribution city for adamllll\"></a>",
+      "description": "The responsive 52-band ADAM identity and personal-site entry.",
+      "html": "<a class=\"ds-profile-poster\" href=\"https://home.adamllll.com/\" aria-label=\"Visit adamllll's personal website\"><img src=\"./assets/profile-activity.svg\" alt=\"Animated ADAM word mark shaped by 52 weeks of GitHub activity\"></a>",
       "css": ".ds-profile-poster { display: block; width: 100%; } .ds-profile-poster:focus-visible { outline: 2px solid #315ee8; outline-offset: 4px; } .ds-profile-poster img { display: block; width: 100%; height: auto; }"
     }
   ],
   "narrative": {
-    "northStar": "The Living Night City",
-    "overview": "The profile is one large, self-contained digital poster. A cobalt ADAM word mark establishes the identity, while 52 weekly activity towers convert real contribution data into the skyline. The composition is cinematic but not noisy: the initial scan and tower boot tell a short story, then the scene settles into sparse city signals. This system rejects conventional developer-profile filler and generic cyberpunk effects. It is dark because the subject is a night city, not because developer pages are expected to be dark. The city remains the only dominant idea; labels, legend, and website entry stay quiet.",
+    "northStar": "The Name Is the City",
+    "overview": "The profile is one large, self-contained digital poster. The 52 vertical bands inside ADAM each represent one week of GitHub activity. Dim cobalt keeps the name legible; contribution height and brightness build a data-driven skyline inside the letters themselves. This system rejects conventional developer-profile filler, generic cyberpunk effects, and compositions where the brand and the data compete as separate objects. It is dark because the subject is a night signal. ADAM remains the only dominant idea; the compact timeline, labels, and website entry stay quiet.",
     "keyCharacteristics": [
       "One full-width 1600 x 720 poster",
       "Sharp pixel geometry with no rounded containers",
-      "Cobalt identity typography over a near-black night field",
-      "Data-driven cyan, green, magenta, and yellow activity signals",
+      "One 1480px ADAM word mark built from exactly 52 weekly bands",
+      "Cobalt architectural typography over a near-black night field",
+      "Data-driven fill height, brightness, and activity color inside the letters",
       "One choreographed load sequence plus low-frequency ambient motion",
       "A linked poster with a deliberately subdued website signal"
     ],
@@ -100,11 +118,13 @@
     "dos": [
       "Do update the generator and regenerate the SVG; never hand-edit generated output.",
       "Do keep all motion inside the SVG and preserve `prefers-reduced-motion`.",
+      "Do keep the 52 weekly bands aligned between the word mark and compact timeline.",
       "Do keep the website entry quiet while making the entire poster clickable."
     ],
     "donts": [
       "Don't add badge walls, skill clouds, project cards, or filler sections.",
       "Don't add a separate contribution graph or dashboard-style metric grid.",
+      "Don't separate ADAM from the activity visualization; the name is the data surface.",
       "Don't use constant glitching, excessive neon glow, glassmorphism, or fake terminal copy."
     ]
   }
