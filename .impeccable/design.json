@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-18T01:51:02+08:00",
+  "title": "Design System: ADAM Commit City",
+  "extensions": {
+    "colorMeta": {
+      "night-deep": {
+        "role": "neutral",
+        "displayName": "Deep Night",
+        "canonical": "#090d16",
+        "tonalRamp": ["#05070c", "#090d16", "#111827", "#1f2937", "#374151", "#6b7280", "#cbd5e1", "#f1f5f9"]
+      },
+      "cobalt-wordmark": {
+        "role": "primary",
+        "displayName": "City Cobalt",
+        "canonical": "#315ee8",
+        "tonalRamp": ["#0c193f", "#132766", "#1d3b99", "#315ee8", "#6588ef", "#9cb3f5", "#ccd8fa", "#eef2ff"]
+      },
+      "electric-cyan": {
+        "role": "secondary",
+        "displayName": "Electric Cyan",
+        "canonical": "#00d8ff",
+        "tonalRamp": ["#00323c", "#00566a", "#0086a3", "#00b6d8", "#00d8ff", "#66e8ff", "#b3f4ff", "#e6fbff"]
+      },
+      "activity-magenta": {
+        "role": "tertiary",
+        "displayName": "Activity Magenta",
+        "canonical": "#ff6ad5",
+        "tonalRamp": ["#3b102f", "#681c54", "#9c2b7e", "#d348ad", "#ff6ad5", "#ff9be4", "#ffc8f0", "#fff0fb"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Monument Display",
+        "purpose": "The single ADAM word mark."
+      },
+      "label": {
+        "displayName": "City Signal",
+        "purpose": "Contribution labels, timeline, legend, and website signal."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-entry",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Poster and boot-scan entry motion."
+      },
+      {
+        "name": "tower-boot",
+        "value": ".9s steps(7, end)",
+        "purpose": "Chronological weekly tower construction."
+      },
+      {
+        "name": "city-ambient",
+        "value": "3.8s-18s stepped loops",
+        "purpose": "Sparse windows, beacons, signals, reflections, and stars after boot."
+      }
+    ],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Linked Activity Poster",
+      "kind": "custom",
+      "refersTo": "activity-poster",
+      "description": "The responsive GitHub profile poster and personal-site entry.",
+      "html": "<a class=\"ds-profile-poster\" href=\"https://home.adamllll.com/\" aria-label=\"Visit adamllll's personal website\"><img src=\"./assets/profile-activity.svg\" alt=\"Animated 52-week GitHub contribution city for adamllll\"></a>",
+      "css": ".ds-profile-poster { display: block; width: 100%; } .ds-profile-poster:focus-visible { outline: 2px solid #315ee8; outline-offset: 4px; } .ds-profile-poster img { display: block; width: 100%; height: auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Living Night City",
+    "overview": "The profile is one large, self-contained digital poster. A cobalt ADAM word mark establishes the identity, while 52 weekly activity towers convert real contribution data into the skyline. The composition is cinematic but not noisy: the initial scan and tower boot tell a short story, then the scene settles into sparse city signals. This system rejects conventional developer-profile filler and generic cyberpunk effects. It is dark because the subject is a night city, not because developer pages are expected to be dark. The city remains the only dominant idea; labels, legend, and website entry stay quiet.",
+    "keyCharacteristics": [
+      "One full-width 1600 x 720 poster",
+      "Sharp pixel geometry with no rounded containers",
+      "Cobalt identity typography over a near-black night field",
+      "Data-driven cyan, green, magenta, and yellow activity signals",
+      "One choreographed load sequence plus low-frequency ambient motion",
+      "A linked poster with a deliberately subdued website signal"
+    ],
+    "rules": [
+      {
+        "name": "The Data Color Rule",
+        "body": "Cyan, green, magenta, and yellow communicate contribution intensity or live signal state. They are never added as unrelated decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Monument Rule",
+        "body": "ADAM is the only oversized text. No other label competes through scale.",
+        "section": "typography"
+      },
+      {
+        "name": "The Pixel Depth Rule",
+        "body": "Build depth with hard geometry and tonal layers. Blur is prohibited in the signature scene.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do update the generator and regenerate the SVG; never hand-edit generated output.",
+      "Do keep all motion inside the SVG and preserve `prefers-reduced-motion`.",
+      "Do keep the website entry quiet while making the entire poster clickable."
+    ],
+    "donts": [
+      "Don't add badge walls, skill clouds, project cards, or filler sections.",
+      "Don't add a separate contribution graph or dashboard-style metric grid.",
+      "Don't use constant glitching, excessive neon glow, glassmorphism, or fake terminal copy."
+    ]
+  }
+}

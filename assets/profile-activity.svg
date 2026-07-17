@@ -1,932 +1,1101 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
   <title id="title">adamllll's contribution city</title>
-  <desc id="desc">A vaporwave pixel skyline generated from 242 contributions across 75 active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain 7 contributions.</desc>
+  <desc id="desc">An animated pixel night city generated from 242 contributions across 75 active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain 7 contributions.</desc>
   <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=242; rolling-total=242</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0d1117"/>
-      <stop offset=".6" stop-color="#0e1019"/>
-      <stop offset="1" stop-color="#151020"/>
+      <stop offset="0" stop-color="#090d16"/>
+      <stop offset=".58" stop-color="#0c101a"/>
+      <stop offset="1" stop-color="#161022"/>
     </linearGradient>
     <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#fffd82"/>
       <stop offset=".45" stop-color="#ff9871"/>
       <stop offset="1" stop-color="#ff4db8"/>
     </linearGradient>
+    <linearGradient id="scan-beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00d8ff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#00d8ff" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#00d8ff" stop-opacity="0"/>
+    </linearGradient>
     <linearGradient id="reflection-alpha" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".5"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#f7f3ff" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#f7f3ff" stop-opacity="0"/>
     </linearGradient>
     <pattern id="stars" width="104" height="76" patternUnits="userSpaceOnUse">
-      <rect x="15" y="13" width="2" height="2" fill="#ffffff" opacity=".42"/>
+      <rect x="15" y="13" width="2" height="2" fill="#f7f3ff" opacity=".42"/>
       <rect x="67" y="21" width="3" height="3" fill="#00d8ff" opacity=".25"/>
       <rect x="39" y="57" width="2" height="2" fill="#ff6ad5" opacity=".34"/>
-      <rect x="91" y="65" width="2" height="2" fill="#ffffff" opacity=".2"/>
+      <rect x="91" y="65" width="2" height="2" fill="#f7f3ff" opacity=".2"/>
     </pattern>
     <pattern id="scanlines" width="8" height="8" patternUnits="userSpaceOnUse">
-      <rect width="8" height="4" fill="#000000" opacity="0"/>
-      <rect y="4" width="8" height="4" fill="#000000" opacity=".1"/>
+      <rect width="8" height="4" fill="#05070d" opacity="0"/>
+      <rect y="4" width="8" height="4" fill="#05070d" opacity=".09"/>
     </pattern>
     <clipPath id="pixel-sun">
-      <path d="M1184 116h88v8h32v8h24v16h16v16h8v24h8v32h8v72h-8v32h-8v24h-16v16h-24v8h-32v8h-88v-8h-32v-8h-24v-16h-16v-24h-8v-32h-8v-72h8v-32h8v-24h16v-16h24v-8h32v-8z"/>
+      <path d="M1184 116h88v8h32v8h24v16h16v16h8v24h8v32h8v72h-8v32h-8v24h-16v16h-24v8h-32v8h-88v-8h-32v-8h-24v-16h-16v-24h-8v-32h-8v-72h8v-32h8v-24h16v-16h24v-8h32v-8z" transform="translate(0 72)"/>
     </clipPath>
     <mask id="reflection-mask">
-      <rect x="0" y="418" width="1600" height="142" fill="url(#reflection-alpha)"/>
+      <rect x="0" y="520" width="1600" height="128" fill="url(#reflection-alpha)"/>
     </mask>
-    <filter id="sun-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
     <style>
       text { font-family: "Courier New", Consolas, monospace; }
-      .tower { transform-box: fill-box; transform-origin: center bottom; animation: city-boot .68s steps(6, end) both; }
-      .beacon { animation: beacon 3.2s steps(2, end) infinite; }
-      .now-pulse { animation: now-pulse 3.2s steps(4, end) infinite; }
-      .current-window { animation: current-window 3.2s steps(2, end) infinite; }
-      @keyframes city-boot { from { transform: scaleY(.04); opacity: .15; } to { transform: scaleY(1); opacity: 1; } }
-      @keyframes beacon { 0%, 42%, 60%, 100% { opacity: 1; } 51% { opacity: .18; } }
-      @keyframes now-pulse { 0%, 100% { opacity: .16; } 50% { opacity: .78; } }
-      @keyframes current-window { 0%, 100% { opacity: 1; } 50% { opacity: .38; } }
+      .poster { animation: poster-in .45s cubic-bezier(.16, 1, .3, 1) both; }
+      .wordmark { transform-box: fill-box; transform-origin: center; animation: wordmark-lock .92s steps(7, end) .16s both; }
+      .wordmark-echo { animation: wordmark-echo 1.15s steps(5, end) .16s both; }
+      .star-field-slow { animation: star-drift 18s steps(18, end) 3s infinite alternate; }
+      .star-field-pulse { animation: star-pulse 7.6s steps(4, end) 3.2s infinite; }
+      .sun-disc { transform-box: fill-box; transform-origin: center; animation: sun-breathe 8s steps(5, end) 3.1s infinite; }
+      .tower { transform-box: fill-box; transform-origin: center bottom; animation: city-boot .9s steps(7, end) both; }
+      .ambient-window { animation: ambient-window 8.2s steps(2, end) infinite; }
+      .beacon { animation: beacon 4.2s steps(2, end) infinite; }
+      .now-pulse { animation: now-pulse 3.8s steps(4, end) infinite; }
+      .current-window { animation: current-window 3.8s steps(2, end) infinite; }
+      .horizon-signal { animation: signal-run 6.4s linear 2.8s infinite; }
+      .reflection-city { animation: reflection-shift 6.8s steps(4, end) 3s infinite alternate; }
+      .road-grid { animation: grid-breathe 8.6s steps(4, end) 3s infinite; }
+      .boot-scan { animation: boot-scan 2.8s cubic-bezier(.16, 1, .3, 1) .34s both; }
+      .website-pulse { animation: website-pulse 4.6s steps(2, end) 3.2s infinite; }
+      @keyframes poster-in { from { opacity: .72; } to { opacity: 1; } }
+      @keyframes wordmark-lock { 0% { transform: translateX(-12px); opacity: .54; } 58% { transform: translateX(4px); opacity: .9; } 100% { transform: translateX(0); opacity: 1; } }
+      @keyframes wordmark-echo { 0%, 68% { opacity: .34; } 100% { opacity: .12; } }
+      @keyframes star-drift { from { transform: translateX(-20px); opacity: .62; } to { transform: translateX(28px); opacity: .88; } }
+      @keyframes star-pulse { 0%, 100% { opacity: .12; } 50% { opacity: .32; } }
+      @keyframes sun-breathe { 0%, 100% { opacity: .88; } 50% { opacity: 1; } }
+      @keyframes city-boot { from { transform: scaleY(.04); opacity: .18; } to { transform: scaleY(1); opacity: 1; } }
+      @keyframes ambient-window { 0%, 8%, 12%, 100% { opacity: 1; } 10% { opacity: .24; } }
+      @keyframes beacon { 0%, 42%, 60%, 100% { opacity: 1; } 51% { opacity: .16; } }
+      @keyframes now-pulse { 0%, 100% { opacity: .14; } 50% { opacity: .74; } }
+      @keyframes current-window { 0%, 100% { opacity: 1; } 50% { opacity: .36; } }
+      @keyframes signal-run { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -200; } }
+      @keyframes reflection-shift { from { transform: translateX(-2px); opacity: .24; } to { transform: translateX(2px); opacity: .31; } }
+      @keyframes grid-breathe { 0%, 100% { opacity: .25; } 50% { opacity: .36; } }
+      @keyframes boot-scan { 0% { transform: translateX(0); opacity: 0; } 12% { opacity: .5; } 86% { opacity: .28; } 100% { transform: translateX(1820px); opacity: 0; } }
+      @keyframes website-pulse { 0%, 100% { opacity: .46; } 50% { opacity: 1; } }
       @media (prefers-reduced-motion: reduce) {
-        .tower, .beacon, .now-pulse, .current-window { animation: none; }
+        .poster, .wordmark, .wordmark-echo, .star-field-slow, .star-field-pulse,
+        .sun-disc, .tower, .ambient-window, .beacon, .now-pulse, .current-window,
+        .horizon-signal, .reflection-city, .road-grid, .website-pulse { animation: none; }
+        .boot-scan { display: none; }
       }
     </style>
   </defs>
 
-  <rect width="1600" height="560" fill="url(#night)"/>
-  <rect width="1600" height="560" fill="url(#stars)"/>
+  <g class="poster">
+    <rect width="1600" height="720" fill="url(#night)"/>
+    <g class="star-field-slow">
+      <rect x="-80" width="1760" height="520" fill="url(#stars)"/>
+    </g>
+    <g class="star-field-pulse" opacity=".22" transform="translate(41 29)">
+      <rect x="-80" width="1760" height="480" fill="url(#stars)"/>
+    </g>
 
-  <g clip-path="url(#pixel-sun)" opacity=".94" filter="url(#sun-glow)">
-    <rect x="1080" y="106" width="320" height="300" fill="url(#sun)"/>
-    <rect x="1070" y="224" width="340" height="8" fill="#11101a"/>
-    <rect x="1070" y="244" width="340" height="10" fill="#11101a"/>
-    <rect x="1070" y="268" width="340" height="13" fill="#11101a"/>
-    <rect x="1070" y="298" width="340" height="17" fill="#11101a"/>
-    <rect x="1070" y="336" width="340" height="22" fill="#11101a"/>
-  </g>
+    <g class="sun-disc" clip-path="url(#pixel-sun)" opacity=".94">
+      <rect x="1080" y="178" width="320" height="300" fill="url(#sun)"/>
+      <rect x="1070" y="296" width="340" height="8" fill="#11101a"/>
+      <rect x="1070" y="316" width="340" height="10" fill="#11101a"/>
+      <rect x="1070" y="340" width="340" height="13" fill="#11101a"/>
+      <rect x="1070" y="370" width="340" height="17" fill="#11101a"/>
+      <rect x="1070" y="408" width="340" height="22" fill="#11101a"/>
+    </g>
 
-  <text x="67" y="62" fill="#00d8ff" font-size="21" font-weight="700">adamllll</text>
-  <text x="67" y="110" fill="#00d8ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" opacity=".52">COMMIT CITY</text>
-  <text x="73" y="110" fill="#ff6ad5" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" opacity=".52">COMMIT CITY</text>
-  <text x="70" y="110" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900">COMMIT CITY</text>
-  <text x="70" y="141" fill="#a997b7" font-size="18">52 TOWERS. ONE ROLLING YEAR.</text>
+    <g class="wordmark" aria-hidden="true">
+      <text class="wordmark-echo" x="56" y="264" fill="#00d8ff" font-family="Arial Black, Arial, sans-serif" font-size="196" font-weight="900" opacity=".12">ADAM</text>
+      <text class="wordmark-echo" x="72" y="270" fill="#ff6ad5" font-family="Arial Black, Arial, sans-serif" font-size="196" font-weight="900" opacity=".1">ADAM</text>
+      <text x="64" y="266" fill="#163a91" stroke="#315ee8" stroke-width="3" font-family="Arial Black, Arial, sans-serif" font-size="196" font-weight="900" opacity=".44">ADAM</text>
+    </g>
 
-  <text x="1530" y="62" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">242 CONTRIBUTIONS</text>
-  <text x="1530" y="92" fill="#a997b7" font-size="17" text-anchor="end">HEIGHT + WINDOWS FOLLOW REAL ACTIVITY</text>
+    <text x="70" y="58" fill="#00d8ff" font-size="19" font-weight="700">adamllll</text>
+    <text x="70" y="92" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900">COMMIT CITY</text>
+    <text x="70" y="119" fill="#a997b7" font-size="15">52 TOWERS / ONE ROLLING YEAR</text>
 
-  <path d="M0 416V384h42v-20h34v12h38v-42h32v26h36v-18h34v36h30v-60h36v30h34v-22h36v46h32v-28h36v72z" fill="#0b0e14" opacity=".55"/>
-  <path d="M872 416v-36h32v-32h34v18h38v-52h34v38h34v-24h38v42h32v-66h38v28h34v-40h38v58h34v-32h38v98z" fill="#10101a" opacity=".48"/>
+    <text x="1530" y="61" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">242 CONTRIBUTIONS</text>
+    <text x="1530" y="89" fill="#a997b7" font-size="15" text-anchor="end">REAL ACTIVITY / LIVE CITY SIGNAL</text>
 
-  <path d="M0 418h1600v142H0z" fill="#24152f" opacity=".18"/>
-  <g fill="none" stroke="#9d5fc4" stroke-width="2" opacity=".34">
-    <path d="M800 418L52 560M800 418L312 560M800 418L530 560M800 418L1070 560M800 418L1288 560M800 418L1548 560"/>
-    <path d="M0 430h1600M0 450h1600M0 480h1600M0 516h1600M0 558h1600"/>
-  </g>
-  <line x1="0" y1="418" x2="1600" y2="418" stroke="#ff6ad5" stroke-width="3" opacity=".56"/>
+    <g transform="translate(0 102)">
+      <path d="M0 416V384h42v-20h34v12h38v-42h32v26h36v-18h34v36h30v-60h36v30h34v-22h36v46h32v-28h36v72z" fill="#080c14" opacity=".64"/>
+      <path d="M872 416v-36h32v-32h34v18h38v-52h34v38h34v-24h38v42h32v-66h38v28h34v-40h38v58h34v-32h38v98z" fill="#11101c" opacity=".58"/>
+    </g>
 
-  <g mask="url(#reflection-mask)" opacity=".3">
-      <g transform="translate(0 836) scale(1 -1)"><rect x="70" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="98" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="126" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="154" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="182" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="210" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="238" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="266" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="294" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="322" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="350" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="378" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="406" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="434" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="462" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="490" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="518" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="546" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="574" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="602" y="226" width="21" height="192" fill="#151225" stroke="#c774e8" stroke-width="2"/><rect x="606" y="219" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="630" y="176" width="21" height="242" fill="#191221" stroke="#ff6ad5" stroke-width="2"/><rect x="634" y="169" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="658" y="226" width="21" height="192" fill="#151225" stroke="#c774e8" stroke-width="2"/><rect x="662" y="219" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="686" y="191" width="21" height="227" fill="#151225" stroke="#c774e8" stroke-width="2"/><rect x="690" y="184" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="714" y="187" width="21" height="231" fill="#191221" stroke="#ff6ad5" stroke-width="2"/><rect x="718" y="180" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="742" y="165" width="21" height="253" fill="#191221" stroke="#ff6ad5" stroke-width="2"/><rect x="746" y="158" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="770" y="266" width="21" height="152" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="774" y="259" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="798" y="259" width="21" height="159" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="802" y="252" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="826" y="259" width="21" height="159" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="830" y="252" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="854" y="259" width="21" height="159" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="858" y="252" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="882" y="328" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="886" y="321" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="910" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="938" y="287" width="21" height="131" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="942" y="280" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="966" y="272" width="21" height="146" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="970" y="265" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="994" y="287" width="21" height="131" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="998" y="280" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1022" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1026" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1050" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1054" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1078" y="272" width="21" height="146" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1082" y="265" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1106" y="315" width="21" height="103" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1110" y="308" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1134" y="242" width="21" height="176" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1138" y="235" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1162" y="328" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1166" y="321" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1190" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1218" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1246" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1274" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1278" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1302" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1306" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1330" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1358" y="315" width="21" height="103" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1362" y="308" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1386" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1390" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1414" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1442" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1470" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
-      <g transform="translate(0 836) scale(1 -1)"><rect x="1498" y="279" width="21" height="139" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1502" y="272" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
-  </g>
+    <path d="M0 520h1600v128H0z" fill="#24152f" opacity=".18"/>
+    <g class="road-grid" fill="none" stroke="#76509b" stroke-width="2" opacity=".3">
+      <path d="M800 520L52 648M800 520L312 648M800 520L530 648M800 520L1070 648M800 520L1288 648M800 520L1548 648"/>
+      <path d="M0 534h1600M0 554h1600M0 578h1600M0 608h1600M0 646h1600"/>
+    </g>
+    <line x1="0" y1="520" x2="1600" y2="520" stroke="#ff6ad5" stroke-width="3" opacity=".52"/>
+    <line class="horizon-signal" x1="0" y1="516" x2="1600" y2="516" stroke="#00d8ff" stroke-width="2" stroke-dasharray="8 42" opacity=".52"/>
 
-  <g>
-      <g class="tower" style="animation-delay:0.000s">
+    <g class="reflection-city" mask="url(#reflection-mask)" opacity=".28">
+        <g transform="translate(0 1040) scale(1 -1)"><rect x="70" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="98" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="126" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="154" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="182" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="210" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="238" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="266" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="294" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="322" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="350" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="378" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="406" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="434" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="462" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="490" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="518" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="546" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="574" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="602" y="290" width="21" height="230" fill="#151225" stroke="#c774e8" stroke-width="2"/><rect x="606" y="283" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="630" y="230" width="21" height="290" fill="#191221" stroke="#ff6ad5" stroke-width="2"/><rect x="634" y="223" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="658" y="290" width="21" height="230" fill="#151225" stroke="#c774e8" stroke-width="2"/><rect x="662" y="283" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="686" y="248" width="21" height="272" fill="#151225" stroke="#c774e8" stroke-width="2"/><rect x="690" y="241" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="714" y="244" width="21" height="276" fill="#191221" stroke="#ff6ad5" stroke-width="2"/><rect x="718" y="237" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="742" y="217" width="21" height="303" fill="#191221" stroke="#ff6ad5" stroke-width="2"/><rect x="746" y="210" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="770" y="337" width="21" height="183" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="774" y="330" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="798" y="329" width="21" height="191" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="802" y="322" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="826" y="329" width="21" height="191" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="830" y="322" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="854" y="329" width="21" height="191" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="858" y="322" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="882" y="411" width="21" height="109" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="886" y="404" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="910" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="938" y="363" width="21" height="157" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="942" y="356" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="966" y="345" width="21" height="175" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="970" y="338" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="994" y="363" width="21" height="157" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="998" y="356" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1022" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1026" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1050" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1054" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1078" y="345" width="21" height="175" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1082" y="338" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1106" y="396" width="21" height="124" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1110" y="389" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1134" y="309" width="21" height="211" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1138" y="302" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1162" y="411" width="21" height="109" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1166" y="404" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1190" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1218" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1246" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1274" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1278" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1302" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1306" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1330" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1358" y="396" width="21" height="124" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1362" y="389" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1386" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/><rect x="1390" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1414" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1442" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1470" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2"/></g>
+      <g transform="translate(0 1040) scale(1 -1)"><rect x="1498" y="353" width="21" height="167" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/><rect x="1502" y="346" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/></g>
+    </g>
+
+    <g>
+        <g class="tower" style="animation-delay:0.900s">
   <title>Week 1: 0 contributions</title>
-  <rect x="70" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="70" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.019s">
+      <g class="tower" style="animation-delay:0.922s">
   <title>Week 2: 0 contributions</title>
-  <rect x="98" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="98" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.038s">
+      <g class="tower" style="animation-delay:0.944s">
   <title>Week 3: 0 contributions</title>
-  <rect x="126" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="126" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.057s">
+      <g class="tower" style="animation-delay:0.966s">
   <title>Week 4: 0 contributions</title>
-  <rect x="154" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="154" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.076s">
+      <g class="tower" style="animation-delay:0.988s">
   <title>Week 5: 0 contributions</title>
-  <rect x="182" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="182" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.095s">
+      <g class="tower" style="animation-delay:1.010s">
   <title>Week 6: 0 contributions</title>
-  <rect x="210" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="210" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.114s">
+      <g class="tower" style="animation-delay:1.032s">
   <title>Week 7: 0 contributions</title>
-  <rect x="238" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="238" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.133s">
+      <g class="tower" style="animation-delay:1.054s">
   <title>Week 8: 0 contributions</title>
-  <rect x="266" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="266" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.152s">
+      <g class="tower" style="animation-delay:1.076s">
   <title>Week 9: 0 contributions</title>
-  <rect x="294" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="294" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.171s">
+      <g class="tower" style="animation-delay:1.098s">
   <title>Week 10: 0 contributions</title>
-  <rect x="322" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="322" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.190s">
+      <g class="tower" style="animation-delay:1.120s">
   <title>Week 11: 0 contributions</title>
-  <rect x="350" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="350" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.209s">
+      <g class="tower" style="animation-delay:1.142s">
   <title>Week 12: 0 contributions</title>
-  <rect x="378" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="378" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.228s">
+      <g class="tower" style="animation-delay:1.164s">
   <title>Week 13: 0 contributions</title>
-  <rect x="406" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="406" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.247s">
+      <g class="tower" style="animation-delay:1.186s">
   <title>Week 14: 0 contributions</title>
-  <rect x="434" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="434" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.266s">
+      <g class="tower" style="animation-delay:1.208s">
   <title>Week 15: 0 contributions</title>
-  <rect x="462" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="462" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.285s">
+      <g class="tower" style="animation-delay:1.230s">
   <title>Week 16: 0 contributions</title>
-  <rect x="490" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="490" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.304s">
+      <g class="tower" style="animation-delay:1.252s">
   <title>Week 17: 0 contributions</title>
-  <rect x="518" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="518" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.323s">
+      <g class="tower" style="animation-delay:1.274s">
   <title>Week 18: 0 contributions</title>
-  <rect x="546" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="546" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.342s">
+      <g class="tower" style="animation-delay:1.296s">
   <title>Week 19: 0 contributions</title>
-  <rect x="574" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="574" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.361s">
+      <g class="tower" style="animation-delay:1.318s">
   <title>Week 20: 16 contributions</title>
-  <rect x="602" y="226" width="21" height="192" fill="#151225" stroke="#c774e8" stroke-width="2" opacity="0.98"/>
-  <rect x="606" y="219" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/>
-  <rect x="606" y="405" width="4" height="6" fill="#06ffa5"/>
-  <rect x="615" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="606" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="615" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="606" y="381" width="4" height="6" fill="#06ffa5"/>
-  <rect x="615" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="606" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="615" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="606" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="615" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="606" y="345" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="615" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="606" y="333" width="4" height="6" fill="#06ffa5"/>
-  <rect x="615" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect x="606" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="615" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect x="606" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect x="615" y="309" width="4" height="6" fill="#00d8ff"/>
-  <rect x="606" y="297" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="615" y="297" width="4" height="6" fill="#fffd82"/>
-  <rect x="606" y="285" width="4" height="6" fill="#06ffa5"/>
-  <rect x="615" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="606" y="273" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="615" y="273" width="4" height="6" fill="#fffd82"/>
-  <rect x="606" y="261" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="615" y="261" width="4" height="6" fill="#00d8ff"/>
-  <rect x="606" y="249" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="615" y="249" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="612" y="208" width="2" height="11" fill="#c774e8"/>
-  <rect class="beacon" x="609" y="203" width="8" height="7" fill="#fffd82"/>
+  <rect x="602" y="290" width="21" height="230" fill="#151225" stroke="#c774e8" stroke-width="2" opacity="0.98"/>
+  <rect x="606" y="283" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/>
+  <rect x="606" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="615" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="615" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="606" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="615" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="615" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="606" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="615" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="606" y="435" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="423" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="615" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="606" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="606" y="399" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="615" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="606" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="606" y="375" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="615" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="606" y="363" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="363" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="351" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="615" y="351" width="4" height="6" fill="#fffd82"/>
+  <rect x="606" y="339" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="339" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="327" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="615" y="327" width="4" height="6" fill="#fffd82"/>
+  <rect x="606" y="315" width="4" height="6" fill="#06ffa5"/>
+  <rect x="615" y="315" width="4" height="6" fill="#00d8ff"/>
+  <rect x="606" y="303" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="615" y="303" width="4" height="6" fill="#fffd82"/>
+  <rect x="612" y="272" width="2" height="11" fill="#c774e8"/>
+  <rect class="beacon" x="609" y="267" width="8" height="7" fill="#fffd82" style="animation-delay:4.45s"/>
 </g>
-      <g class="tower" style="animation-delay:0.380s">
+      <g class="tower" style="animation-delay:1.340s">
   <title>Week 21: 28 contributions</title>
-  <rect x="630" y="176" width="21" height="242" fill="#191221" stroke="#ff6ad5" stroke-width="2" opacity="0.98"/>
-  <rect x="634" y="169" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/>
-  <rect x="634" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="405" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="381" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="357" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="345" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="345" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="333" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="321" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="309" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="309" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="297" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="297" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="285" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="285" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="273" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="273" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="261" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="261" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="249" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="249" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="237" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="237" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="225" width="4" height="6" fill="#fffd82"/>
-  <rect x="643" y="225" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="213" width="4" height="6" fill="#00d8ff"/>
-  <rect x="643" y="213" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="634" y="201" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="643" y="201" width="4" height="6" fill="#06ffa5"/>
-  <rect x="634" y="189" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="643" y="189" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="640" y="158" width="2" height="11" fill="#ff6ad5"/>
-  <rect class="beacon" x="637" y="153" width="8" height="7" fill="#fffd82"/>
+  <rect x="630" y="230" width="21" height="290" fill="#191221" stroke="#ff6ad5" stroke-width="2" opacity="0.98"/>
+  <rect x="634" y="223" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/>
+  <rect x="634" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="507" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="483" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="471" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="435" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="423" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="ambient-window" style="animation-delay:3.54s" x="634" y="411" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="411" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="399" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="387" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="387" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="375" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="375" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="363" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="363" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="351" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="351" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="339" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="339" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="327" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="327" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="315" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="315" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="303" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="303" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="291" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="291" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="279" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="279" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="267" width="4" height="6" fill="#00d8ff"/>
+  <rect x="643" y="267" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="634" y="255" width="4" height="6" fill="#fffd82"/>
+  <rect x="643" y="255" width="4" height="6" fill="#06ffa5"/>
+  <rect x="634" y="243" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="ambient-window" style="animation-delay:3.54s" x="643" y="243" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="640" y="212" width="2" height="11" fill="#ff6ad5"/>
+  <rect class="beacon" x="637" y="207" width="8" height="7" fill="#fffd82" style="animation-delay:4.74s"/>
 </g>
-      <g class="tower" style="animation-delay:0.399s">
+      <g class="tower" style="animation-delay:1.362s">
   <title>Week 22: 16 contributions</title>
-  <rect x="658" y="226" width="21" height="192" fill="#151225" stroke="#c774e8" stroke-width="2" opacity="0.98"/>
-  <rect x="662" y="219" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/>
-  <rect x="662" y="405" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="671" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="662" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="671" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="662" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="671" y="381" width="4" height="6" fill="#fffd82"/>
-  <rect x="662" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="671" y="369" width="4" height="6" fill="#00d8ff"/>
-  <rect x="662" y="357" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="671" y="357" width="4" height="6" fill="#fffd82"/>
-  <rect x="662" y="345" width="4" height="6" fill="#06ffa5"/>
-  <rect x="671" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="662" y="333" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="671" y="333" width="4" height="6" fill="#fffd82"/>
-  <rect x="662" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="671" y="321" width="4" height="6" fill="#00d8ff"/>
-  <rect x="662" y="309" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="671" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="662" y="297" width="4" height="6" fill="#06ffa5"/>
-  <rect x="671" y="297" width="4" height="6" fill="#00d8ff"/>
-  <rect x="662" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="671" y="285" width="4" height="6" fill="#fffd82"/>
-  <rect x="662" y="273" width="4" height="6" fill="#06ffa5"/>
-  <rect x="671" y="273" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="662" y="261" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="671" y="261" width="4" height="6" fill="#fffd82"/>
-  <rect x="662" y="249" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="671" y="249" width="4" height="6" fill="#00d8ff"/>
-  <rect x="668" y="208" width="2" height="11" fill="#c774e8"/>
-  <rect class="beacon" x="665" y="203" width="8" height="7" fill="#fffd82"/>
+  <rect x="658" y="290" width="21" height="230" fill="#151225" stroke="#c774e8" stroke-width="2" opacity="0.98"/>
+  <rect x="662" y="283" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/>
+  <rect x="662" y="507" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="671" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="662" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="671" y="495" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="483" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="671" y="483" width="4" height="6" fill="#fffd82"/>
+  <rect x="662" y="471" width="4" height="6" fill="#06ffa5"/>
+  <rect x="671" y="471" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="671" y="459" width="4" height="6" fill="#fffd82"/>
+  <rect x="662" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect class="ambient-window" style="animation-delay:3.91s" x="671" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="671" y="435" width="4" height="6" fill="#fffd82"/>
+  <rect x="662" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="671" y="423" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="671" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="662" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="671" y="399" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="671" y="387" width="4" height="6" fill="#fffd82"/>
+  <rect x="662" y="375" width="4" height="6" fill="#06ffa5"/>
+  <rect x="671" y="375" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="363" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="671" y="363" width="4" height="6" fill="#fffd82"/>
+  <rect x="662" y="351" width="4" height="6" fill="#06ffa5"/>
+  <rect x="671" y="351" width="4" height="6" fill="#00d8ff"/>
+  <rect x="662" y="339" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="671" y="339" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="662" y="327" width="4" height="6" fill="#06ffa5"/>
+  <rect x="671" y="327" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="662" y="315" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="671" y="315" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="662" y="303" width="4" height="6" fill="#06ffa5"/>
+  <rect x="671" y="303" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="668" y="272" width="2" height="11" fill="#c774e8"/>
+  <rect class="beacon" x="665" y="267" width="8" height="7" fill="#fffd82" style="animation-delay:3.00s"/>
 </g>
-      <g class="tower" style="animation-delay:0.418s">
+      <g class="tower" style="animation-delay:1.384s">
   <title>Week 23: 24 contributions</title>
-  <rect x="686" y="191" width="21" height="227" fill="#151225" stroke="#c774e8" stroke-width="2" opacity="0.98"/>
-  <rect x="690" y="184" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/>
-  <rect x="690" y="405" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="405" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="699" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="381" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="690" y="369" width="4" height="6" fill="#00d8ff"/>
-  <rect x="699" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="357" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="357" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="345" width="4" height="6" fill="#00d8ff"/>
-  <rect x="699" y="345" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="333" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="333" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="699" y="321" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="309" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="297" width="4" height="6" fill="#00d8ff"/>
-  <rect x="699" y="297" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="285" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="285" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="273" width="4" height="6" fill="#00d8ff"/>
-  <rect x="699" y="273" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="690" y="261" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="261" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="249" width="4" height="6" fill="#00d8ff"/>
-  <rect x="699" y="249" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="237" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="237" width="4" height="6" fill="#06ffa5"/>
-  <rect x="690" y="225" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="699" y="225" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="690" y="213" width="4" height="6" fill="#fffd82"/>
-  <rect x="699" y="213" width="4" height="6" fill="#06ffa5"/>
-  <rect x="696" y="173" width="2" height="11" fill="#c774e8"/>
-  <rect class="beacon" x="693" y="168" width="8" height="7" fill="#fffd82"/>
+  <rect x="686" y="248" width="21" height="272" fill="#151225" stroke="#c774e8" stroke-width="2" opacity="0.98"/>
+  <rect x="690" y="241" width="13" height="9" fill="#151225" stroke="#c774e8" stroke-width="2"/>
+  <rect x="690" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="507" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="495" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="495" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="483" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="483" width="4" height="6" fill="#06ffa5"/>
+  <rect class="ambient-window" style="animation-delay:4.28s" x="690" y="471" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="690" y="459" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="435" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="435" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="423" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="423" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="699" y="399" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="387" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="375" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="375" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="363" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="363" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="351" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="351" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="690" y="339" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="339" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="690" y="327" width="4" height="6" fill="#00d8ff"/>
+  <rect x="699" y="327" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="315" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="315" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="303" width="4" height="6" fill="#00d8ff"/>
+  <rect class="ambient-window" style="animation-delay:4.28s" x="699" y="303" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="291" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="291" width="4" height="6" fill="#06ffa5"/>
+  <rect x="690" y="279" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="699" y="279" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="690" y="267" width="4" height="6" fill="#fffd82"/>
+  <rect x="699" y="267" width="4" height="6" fill="#06ffa5"/>
+  <rect x="696" y="230" width="2" height="11" fill="#c774e8"/>
+  <rect class="beacon" x="693" y="225" width="8" height="7" fill="#fffd82" style="animation-delay:3.29s"/>
 </g>
-      <g class="tower" style="animation-delay:0.437s">
+      <g class="tower" style="animation-delay:1.406s">
   <title>Week 24: 25 contributions</title>
-  <rect x="714" y="187" width="21" height="231" fill="#191221" stroke="#ff6ad5" stroke-width="2" opacity="0.98"/>
-  <rect x="718" y="180" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/>
-  <rect x="718" y="405" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="381" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="357" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="345" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="345" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="333" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="718" y="321" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="718" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="309" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="297" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="297" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="285" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="285" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="273" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="273" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="261" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="261" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="249" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="249" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="237" width="4" height="6" fill="#06ffa5"/>
-  <rect x="727" y="237" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="225" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="727" y="225" width="4" height="6" fill="#fffd82"/>
-  <rect x="718" y="213" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="727" y="213" width="4" height="6" fill="#00d8ff"/>
-  <rect x="718" y="201" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="727" y="201" width="4" height="6" fill="#fffd82"/>
-  <rect x="724" y="169" width="2" height="11" fill="#ff6ad5"/>
-  <rect class="beacon" x="721" y="164" width="8" height="7" fill="#fffd82"/>
+  <rect x="714" y="244" width="21" height="276" fill="#191221" stroke="#ff6ad5" stroke-width="2" opacity="0.98"/>
+  <rect x="718" y="237" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/>
+  <rect x="718" y="507" width="4" height="6" fill="#06ffa5"/>
+  <rect class="ambient-window" style="animation-delay:4.65s" x="727" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="727" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="483" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="471" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="435" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="718" y="423" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="423" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="411" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="399" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="387" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="727" y="375" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="363" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="363" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="351" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="351" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="339" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="339" width="4" height="6" fill="#00d8ff"/>
+  <rect class="ambient-window" style="animation-delay:4.65s" x="718" y="327" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="327" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="315" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="315" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="718" y="303" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="303" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="291" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="291" width="4" height="6" fill="#00d8ff"/>
+  <rect x="718" y="279" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="727" y="279" width="4" height="6" fill="#fffd82"/>
+  <rect x="718" y="267" width="4" height="6" fill="#06ffa5"/>
+  <rect x="727" y="267" width="4" height="6" fill="#00d8ff"/>
+  <rect x="724" y="226" width="2" height="11" fill="#ff6ad5"/>
+  <rect class="beacon" x="721" y="221" width="8" height="7" fill="#fffd82" style="animation-delay:3.58s"/>
 </g>
-      <g class="tower" style="animation-delay:0.456s">
+      <g class="tower" style="animation-delay:1.428s">
   <title>Week 25: 31 contributions</title>
-  <rect x="742" y="165" width="21" height="253" fill="#191221" stroke="#ff6ad5" stroke-width="2" opacity="0.98"/>
-  <rect x="746" y="158" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/>
-  <rect x="746" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="405" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="381" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="357" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="345" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="345" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="333" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="321" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="309" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="309" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="297" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="297" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="285" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="285" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="273" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="273" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="261" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="261" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="249" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="249" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="237" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="237" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="225" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="225" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="213" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="213" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="746" y="201" width="4" height="6" fill="#fffd82"/>
-  <rect x="755" y="201" width="4" height="6" fill="#06ffa5"/>
-  <rect x="746" y="189" width="4" height="6" fill="#00d8ff"/>
-  <rect x="755" y="189" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="752" y="147" width="2" height="11" fill="#ff6ad5"/>
-  <rect class="beacon" x="749" y="142" width="8" height="7" fill="#fffd82"/>
+  <rect x="742" y="217" width="21" height="303" fill="#191221" stroke="#ff6ad5" stroke-width="2" opacity="0.98"/>
+  <rect x="746" y="210" width="13" height="9" fill="#191221" stroke="#ff6ad5" stroke-width="2"/>
+  <rect x="746" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="507" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="483" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="471" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="435" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="423" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="423" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="411" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="411" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="399" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="387" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="387" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="375" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="375" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="363" width="4" height="6" fill="#00d8ff"/>
+  <rect class="ambient-window" style="animation-delay:5.02s" x="755" y="363" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="351" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="351" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="339" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="339" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="327" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="327" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="315" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="315" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="303" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="303" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="291" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="291" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="279" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="279" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="267" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="267" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="255" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="255" width="4" height="6" fill="#06ffa5"/>
+  <rect x="746" y="243" width="4" height="6" fill="#00d8ff"/>
+  <rect x="755" y="243" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="746" y="231" width="4" height="6" fill="#fffd82"/>
+  <rect x="755" y="231" width="4" height="6" fill="#06ffa5"/>
+  <rect x="752" y="199" width="2" height="11" fill="#ff6ad5"/>
+  <rect class="beacon" x="749" y="194" width="8" height="7" fill="#fffd82" style="animation-delay:3.87s"/>
 </g>
-      <g class="tower" style="animation-delay:0.475s">
+      <g class="tower" style="animation-delay:1.450s">
   <title>Week 26: 9 contributions</title>
-  <rect x="770" y="266" width="21" height="152" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="774" y="259" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="774" y="405" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="783" y="405" width="4" height="6" fill="#fffd82"/>
-  <rect x="774" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="783" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="774" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="783" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="774" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="783" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="774" y="357" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="783" y="357" width="4" height="6" fill="#fffd82"/>
-  <rect x="774" y="345" width="4" height="6" fill="#06ffa5"/>
-  <rect x="783" y="345" width="4" height="6" fill="#00d8ff"/>
-  <rect x="774" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="783" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="774" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="783" y="321" width="4" height="6" fill="#00d8ff"/>
-  <rect x="774" y="309" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="783" y="309" width="4" height="6" fill="#fffd82"/>
-  <rect x="774" y="297" width="4" height="6" fill="#06ffa5"/>
-  <rect x="783" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="774" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="783" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="770" y="337" width="21" height="183" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="774" y="330" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="774" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="774" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="783" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="774" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="483" width="4" height="6" fill="#fffd82"/>
+  <rect x="774" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="774" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="783" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="774" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="774" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="774" y="423" width="4" height="6" fill="#06ffa5"/>
+  <rect x="783" y="423" width="4" height="6" fill="#00d8ff"/>
+  <rect x="774" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="774" y="399" width="4" height="6" fill="#06ffa5"/>
+  <rect x="783" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="ambient-window" style="animation-delay:5.39s" x="774" y="387" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="783" y="387" width="4" height="6" fill="#fffd82"/>
+  <rect x="774" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="783" y="375" width="4" height="6" fill="#00d8ff"/>
+  <rect x="774" y="363" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="783" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="774" y="351" width="4" height="6" fill="#06ffa5"/>
+  <rect x="783" y="351" width="4" height="6" fill="#00d8ff"/>
 </g>
-      <g class="tower" style="animation-delay:0.494s">
+      <g class="tower" style="animation-delay:1.472s">
   <title>Week 27: 10 contributions</title>
-  <rect x="798" y="259" width="21" height="159" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="802" y="252" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="802" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="811" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="802" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="811" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="802" y="381" width="4" height="6" fill="#fffd82"/>
-  <rect x="811" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="802" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="811" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="802" y="357" width="4" height="6" fill="#fffd82"/>
-  <rect x="811" y="357" width="4" height="6" fill="#06ffa5"/>
-  <rect x="802" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="811" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="802" y="333" width="4" height="6" fill="#fffd82"/>
-  <rect x="811" y="333" width="4" height="6" fill="#06ffa5"/>
-  <rect x="802" y="321" width="4" height="6" fill="#00d8ff"/>
-  <rect x="811" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="802" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="811" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect x="802" y="297" width="4" height="6" fill="#00d8ff"/>
-  <rect x="811" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="802" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="811" y="285" width="4" height="6" fill="#06ffa5"/>
-  <rect x="802" y="273" width="4" height="6" fill="#00d8ff"/>
-  <rect x="811" y="273" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="798" y="329" width="21" height="191" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="802" y="322" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="802" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="811" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="802" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="811" y="495" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="802" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="811" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="802" y="471" width="4" height="6" fill="#00d8ff"/>
+  <rect x="811" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="802" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="811" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="802" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="811" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="802" y="435" width="4" height="6" fill="#fffd82"/>
+  <rect x="811" y="435" width="4" height="6" fill="#06ffa5"/>
+  <rect x="802" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="ambient-window" style="animation-delay:5.76s" x="811" y="423" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="802" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="811" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="802" y="399" width="4" height="6" fill="#00d8ff"/>
+  <rect x="811" y="399" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="802" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="811" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect x="802" y="375" width="4" height="6" fill="#00d8ff"/>
+  <rect x="811" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="802" y="363" width="4" height="6" fill="#fffd82"/>
+  <rect x="811" y="363" width="4" height="6" fill="#06ffa5"/>
+  <rect x="802" y="351" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="811" y="351" width="4" height="6" fill="#ff6ad5"/>
 </g>
-      <g class="tower" style="animation-delay:0.513s">
+      <g class="tower" style="animation-delay:1.494s">
   <title>Week 28: 10 contributions</title>
-  <rect x="826" y="259" width="21" height="159" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="830" y="252" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="830" y="405" width="4" height="6" fill="#06ffa5"/>
-  <rect x="839" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="830" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="839" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="830" y="381" width="4" height="6" fill="#06ffa5"/>
-  <rect x="839" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="830" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="839" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="830" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="839" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="830" y="345" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="839" y="345" width="4" height="6" fill="#fffd82"/>
-  <rect x="830" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="839" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="830" y="321" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="839" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect x="830" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect x="839" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="830" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="839" y="297" width="4" height="6" fill="#fffd82"/>
-  <rect x="830" y="285" width="4" height="6" fill="#06ffa5"/>
-  <rect x="839" y="285" width="4" height="6" fill="#00d8ff"/>
-  <rect x="830" y="273" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="839" y="273" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="826" y="329" width="21" height="191" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="830" y="322" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="830" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="839" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="830" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="839" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="830" y="483" width="4" height="6" fill="#06ffa5"/>
+  <rect x="839" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="830" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="839" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="830" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="839" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="ambient-window" style="animation-delay:2.80s" x="830" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="839" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="830" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="839" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="830" y="423" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="839" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="830" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="839" y="411" width="4" height="6" fill="#00d8ff"/>
+  <rect x="830" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="839" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect x="830" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect x="839" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="830" y="375" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="839" y="375" width="4" height="6" fill="#fffd82"/>
+  <rect x="830" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="839" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="830" y="351" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="839" y="351" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.532s">
+      <g class="tower" style="animation-delay:1.516s">
   <title>Week 29: 10 contributions</title>
-  <rect x="854" y="259" width="21" height="159" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="858" y="252" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="858" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="867" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="858" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="867" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="858" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="867" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="858" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="867" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="858" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="867" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="858" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="867" y="345" width="4" height="6" fill="#06ffa5"/>
-  <rect x="858" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect x="867" y="333" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="858" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="867" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="858" y="309" width="4" height="6" fill="#00d8ff"/>
-  <rect x="867" y="309" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="858" y="297" width="4" height="6" fill="#fffd82"/>
-  <rect x="867" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="858" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="867" y="285" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="858" y="273" width="4" height="6" fill="#fffd82"/>
-  <rect x="867" y="273" width="4" height="6" fill="#06ffa5"/>
+  <rect x="854" y="329" width="21" height="191" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="858" y="322" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="858" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="867" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="858" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="867" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="858" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="ambient-window" style="animation-delay:3.17s" x="867" y="483" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="858" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="867" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="858" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="867" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="858" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="867" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect x="858" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="867" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="858" y="423" width="4" height="6" fill="#fffd82"/>
+  <rect x="867" y="423" width="4" height="6" fill="#06ffa5"/>
+  <rect x="858" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="867" y="411" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="858" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect x="867" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="858" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="867" y="387" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="858" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="867" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="858" y="363" width="4" height="6" fill="#00d8ff"/>
+  <rect x="867" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="858" y="351" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="867" y="351" width="4" height="6" fill="#06ffa5"/>
 </g>
-      <g class="tower" style="animation-delay:0.551s">
+      <g class="tower" style="animation-delay:1.538s">
   <title>Week 30: 2 contributions</title>
-  <rect x="882" y="328" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="886" y="321" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="886" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="895" y="405" width="4" height="6" fill="#fffd82"/>
-  <rect x="886" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="895" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="886" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="895" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="886" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="895" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="886" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="895" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="886" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="895" y="345" width="4" height="6" fill="#00d8ff"/>
+  <rect x="882" y="411" width="21" height="109" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="886" y="404" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="886" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="895" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="886" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="895" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="886" y="483" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="895" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="886" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="895" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="886" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="895" y="459" width="4" height="6" fill="#fffd82"/>
+  <rect x="886" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="895" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="886" y="435" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="895" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.570s">
+      <g class="tower" style="animation-delay:1.560s">
   <title>Week 31: 0 contributions</title>
-  <rect x="910" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="910" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.589s">
+      <g class="tower" style="animation-delay:1.582s">
   <title>Week 32: 6 contributions</title>
-  <rect x="938" y="287" width="21" height="131" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="942" y="280" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="942" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="951" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="942" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="951" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="942" y="381" width="4" height="6" fill="#06ffa5"/>
-  <rect x="951" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="942" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="951" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="942" y="357" width="4" height="6" fill="#06ffa5"/>
-  <rect x="951" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="942" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="951" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="942" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="951" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="942" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="951" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="942" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="951" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="938" y="363" width="21" height="157" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="942" y="356" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="942" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="951" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="942" y="495" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="951" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="942" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="951" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="942" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="951" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="942" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="951" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="942" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="951" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="942" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="951" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="942" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="951" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="942" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="951" y="411" width="4" height="6" fill="#00d8ff"/>
+  <rect x="942" y="399" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="951" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="942" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="951" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.608s">
+      <g class="tower" style="animation-delay:1.604s">
   <title>Week 33: 8 contributions</title>
-  <rect x="966" y="272" width="21" height="146" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="970" y="265" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="970" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="979" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="970" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="979" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="970" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="979" y="381" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="970" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="979" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="970" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="979" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="970" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="979" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="970" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect x="979" y="333" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="970" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect x="979" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="970" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="979" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="970" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="979" y="297" width="4" height="6" fill="#06ffa5"/>
-  <rect x="970" y="285" width="4" height="6" fill="#00d8ff"/>
-  <rect x="979" y="285" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="966" y="345" width="21" height="175" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="970" y="338" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="970" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="979" y="507" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="970" y="495" width="4" height="6" fill="#fffd82"/>
+  <rect x="979" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="970" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="979" y="483" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="970" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="979" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="970" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="979" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="970" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="979" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="970" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="979" y="435" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="970" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="979" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="970" y="411" width="4" height="6" fill="#00d8ff"/>
+  <rect x="979" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="970" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="979" y="399" width="4" height="6" fill="#06ffa5"/>
+  <rect x="970" y="387" width="4" height="6" fill="#00d8ff"/>
+  <rect x="979" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="970" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="979" y="375" width="4" height="6" fill="#06ffa5"/>
+  <rect x="970" y="363" width="4" height="6" fill="#00d8ff"/>
+  <rect x="979" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.627s">
+      <g class="tower" style="animation-delay:1.626s">
   <title>Week 34: 6 contributions</title>
-  <rect x="994" y="287" width="21" height="131" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="998" y="280" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="998" y="405" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1007" y="405" width="4" height="6" fill="#fffd82"/>
-  <rect x="998" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1007" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="998" y="381" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1007" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="998" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1007" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="998" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1007" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="998" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1007" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="998" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1007" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="998" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1007" y="321" width="4" height="6" fill="#00d8ff"/>
-  <rect x="998" y="309" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1007" y="309" width="4" height="6" fill="#fffd82"/>
+  <rect x="994" y="363" width="21" height="157" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="998" y="356" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="998" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1007" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="998" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1007" y="495" width="4" height="6" fill="#00d8ff"/>
+  <rect x="998" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1007" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="998" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1007" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="998" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect class="ambient-window" style="animation-delay:5.02s" x="1007" y="459" width="4" height="6" fill="#fffd82"/>
+  <rect x="998" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1007" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="998" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1007" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="998" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1007" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="998" y="411" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1007" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="998" y="399" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1007" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="998" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1007" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.646s">
+      <g class="tower" style="animation-delay:1.648s">
   <title>Week 35: 1 contribution</title>
-  <rect x="1022" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1026" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1026" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1035" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1026" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1035" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1026" y="381" width="4" height="6" fill="#fffd82"/>
-  <rect x="1035" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1026" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1035" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1026" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1035" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1022" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1026" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1026" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1035" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1026" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1035" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1026" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1035" y="483" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1026" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1035" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1026" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1035" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1026" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1035" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.665s">
+      <g class="tower" style="animation-delay:1.670s">
   <title>Week 36: 1 contribution</title>
-  <rect x="1050" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1054" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1054" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1063" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1054" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1063" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1054" y="381" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1063" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1054" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1063" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1054" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1063" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1050" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1054" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1054" y="507" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1063" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1054" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1063" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1054" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1063" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1054" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1063" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1054" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1063" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1054" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1063" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.684s">
+      <g class="tower" style="animation-delay:1.692s">
   <title>Week 37: 8 contributions</title>
-  <rect x="1078" y="272" width="21" height="146" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="1082" y="265" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="1082" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1091" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1082" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1091" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1082" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1091" y="381" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1082" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="1091" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1082" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1091" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1082" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1091" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1082" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1091" y="333" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1082" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect x="1091" y="321" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1082" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1091" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1082" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1091" y="297" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1082" y="285" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1091" y="285" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1078" y="345" width="21" height="175" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="1082" y="338" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="1082" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1091" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1082" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1091" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1082" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1091" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1082" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1091" y="471" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1082" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1091" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1082" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1091" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1082" y="435" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1091" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1082" y="423" width="4" height="6" fill="#fffd82"/>
+  <rect x="1091" y="423" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1082" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1091" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1082" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect x="1091" y="399" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1082" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1091" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1082" y="375" width="4" height="6" fill="#fffd82"/>
+  <rect class="ambient-window" style="animation-delay:2.80s" x="1091" y="375" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1082" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1091" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.703s">
+      <g class="tower" style="animation-delay:1.714s">
   <title>Week 38: 3 contributions</title>
-  <rect x="1106" y="315" width="21" height="103" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1110" y="308" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1110" y="405" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1119" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1110" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1119" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1110" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1119" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1110" y="369" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1119" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1110" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1119" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1110" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1119" y="345" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1110" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1119" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1106" y="396" width="21" height="124" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1110" y="389" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1110" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1119" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1110" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1119" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1110" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1119" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1110" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1119" y="471" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1110" y="459" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1119" y="459" width="4" height="6" fill="#fffd82"/>
+  <rect x="1110" y="447" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1119" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1110" y="435" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1119" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1110" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1119" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1110" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1119" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.722s">
+      <g class="tower" style="animation-delay:1.736s">
   <title>Week 39: 13 contributions</title>
-  <rect x="1134" y="242" width="21" height="176" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="1138" y="235" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect x="1138" y="405" width="4" height="6" fill="#fffd82"/>
-  <rect x="1147" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1138" y="393" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1147" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1138" y="381" width="4" height="6" fill="#fffd82"/>
-  <rect x="1147" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1138" y="369" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1147" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1138" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1147" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1138" y="345" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1147" y="345" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1138" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1147" y="333" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1138" y="321" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1147" y="321" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1138" y="309" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1147" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1138" y="297" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1147" y="297" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1138" y="285" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1147" y="285" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1138" y="273" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1147" y="273" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1138" y="261" width="4" height="6" fill="#fffd82"/>
-  <rect x="1147" y="261" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1134" y="309" width="21" height="211" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="1138" y="302" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect x="1138" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="1147" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1138" y="495" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1147" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1138" y="483" width="4" height="6" fill="#fffd82"/>
+  <rect x="1147" y="483" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1138" y="471" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1147" y="471" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1138" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1147" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1138" y="447" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1147" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1138" y="435" width="4" height="6" fill="#fffd82"/>
+  <rect x="1147" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1138" y="423" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1147" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1138" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="1147" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1138" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1147" y="399" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1138" y="387" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1147" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1138" y="375" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1147" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1138" y="363" width="4" height="6" fill="#fffd82"/>
+  <rect x="1147" y="363" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1138" y="351" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1147" y="351" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1138" y="339" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1147" y="339" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1138" y="327" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1147" y="327" width="4" height="6" fill="#ff6ad5"/>
 </g>
-      <g class="tower" style="animation-delay:0.741s">
+      <g class="tower" style="animation-delay:1.758s">
   <title>Week 40: 2 contributions</title>
-  <rect x="1162" y="328" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1166" y="321" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1166" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1175" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1166" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1175" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1166" y="381" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1175" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1166" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1175" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1166" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1175" y="357" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1166" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1175" y="345" width="4" height="6" fill="#fffd82"/>
+  <rect x="1162" y="411" width="21" height="109" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1166" y="404" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1166" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1175" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1166" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1175" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1166" y="483" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1175" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1166" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1175" y="471" width="4" height="6" fill="#fffd82"/>
+  <rect x="1166" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1175" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1166" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1175" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1166" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1175" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.760s">
+      <g class="tower" style="animation-delay:1.780s">
   <title>Week 41: 0 contributions</title>
-  <rect x="1190" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1190" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.779s">
+      <g class="tower" style="animation-delay:1.802s">
   <title>Week 42: 0 contributions</title>
-  <rect x="1218" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1218" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.798s">
+      <g class="tower" style="animation-delay:1.824s">
   <title>Week 43: 0 contributions</title>
-  <rect x="1246" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1246" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.817s">
+      <g class="tower" style="animation-delay:1.846s">
   <title>Week 44: 1 contribution</title>
-  <rect x="1274" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1278" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1278" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1287" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1278" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1287" y="393" width="4" height="6" fill="#fffd82"/>
-  <rect x="1278" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1287" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1278" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1287" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1278" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1287" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1274" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1278" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1278" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1287" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1278" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1287" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1278" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1287" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1278" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1287" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1278" y="459" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1287" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1278" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1287" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.836s">
+      <g class="tower" style="animation-delay:1.868s">
   <title>Week 45: 1 contribution</title>
-  <rect x="1302" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1306" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1306" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1315" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1306" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1315" y="393" width="4" height="6" fill="#06ffa5"/>
-  <rect x="1306" y="381" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1315" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1306" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1315" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1306" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1315" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1302" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1306" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1306" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1315" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1306" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1315" y="495" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1306" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1315" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1306" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1315" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1306" y="459" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1315" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1306" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1315" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.855s">
+      <g class="tower" style="animation-delay:1.890s">
   <title>Week 46: 0 contributions</title>
-  <rect x="1330" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1330" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.874s">
+      <g class="tower" style="animation-delay:1.912s">
   <title>Week 47: 3 contributions</title>
-  <rect x="1358" y="315" width="21" height="103" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1362" y="308" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1362" y="405" width="4" height="6" fill="#fffd82"/>
-  <rect x="1371" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1362" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1371" y="393" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1362" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1371" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1362" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1371" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1362" y="357" width="4" height="6" fill="#fffd82"/>
-  <rect x="1371" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1362" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1371" y="345" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1362" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1371" y="333" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1358" y="396" width="21" height="124" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1362" y="389" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1362" y="507" width="4" height="6" fill="#fffd82"/>
+  <rect x="1371" y="507" width="4" height="6" fill="#06ffa5"/>
+  <rect class="ambient-window" style="animation-delay:3.17s" x="1362" y="495" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1371" y="495" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1362" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1371" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1362" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1371" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1362" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1371" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1362" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1371" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1362" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1371" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1362" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1371" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1362" y="411" width="4" height="6" fill="#fffd82"/>
+  <rect x="1371" y="411" width="4" height="6" fill="#06ffa5"/>
 </g>
-      <g class="tower" style="animation-delay:0.893s">
+      <g class="tower" style="animation-delay:1.934s">
   <title>Week 48: 1 contribution</title>
-  <rect x="1386" y="344" width="21" height="74" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
-  <rect x="1390" y="337" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
-  <rect x="1390" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1399" y="405" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1390" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1399" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1390" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1399" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1390" y="369" width="4" height="6" fill="#ff6ad5"/>
-  <rect x="1399" y="369" width="4" height="6" fill="#fffd82"/>
-  <rect x="1390" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1399" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1386" y="430" width="21" height="90" fill="#0b151b" stroke="#06ffa5" stroke-width="2" opacity="0.98"/>
+  <rect x="1390" y="423" width="13" height="9" fill="#0b151b" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1390" y="507" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1399" y="507" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1390" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1399" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1390" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1399" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1390" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1399" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1390" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1399" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1390" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1399" y="447" width="4" height="6" fill="#332344" opacity=".55"/>
 </g>
-      <g class="tower" style="animation-delay:0.912s">
+      <g class="tower" style="animation-delay:1.956s">
   <title>Week 49: 0 contributions</title>
-  <rect x="1414" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1414" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.931s">
+      <g class="tower" style="animation-delay:1.978s">
   <title>Week 50: 0 contributions</title>
-  <rect x="1442" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1442" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.950s">
+      <g class="tower" style="animation-delay:2.000s">
   <title>Week 51: 0 contributions</title>
-  <rect x="1470" y="404" width="21" height="14" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
+  <rect x="1470" y="502" width="21" height="18" fill="#0d1117" stroke="#342b43" stroke-width="2" opacity="0.42"/>
 </g>
-      <g class="tower" style="animation-delay:0.969s">
+      <g class="tower" style="animation-delay:2.022s">
   <title>Week 52: 7 contributions</title>
-  <rect x="1498" y="279" width="21" height="139" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
-  <rect x="1502" y="272" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
-  <rect class="current-window" x="1502" y="405" width="4" height="6" fill="#06ffa5"/>
-  <rect class="current-window" x="1511" y="405" width="4" height="6" fill="#00d8ff"/>
-  <rect x="1502" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1511" y="393" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1502" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1511" y="381" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1502" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1511" y="369" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1502" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1511" y="357" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1502" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect x="1511" y="345" width="4" height="6" fill="#332344" opacity=".55"/>
-  <rect class="current-window" x="1502" y="333" width="4" height="6" fill="#06ffa5"/>
-  <rect class="current-window" x="1511" y="333" width="4" height="6" fill="#00d8ff"/>
-  <rect class="current-window" x="1502" y="321" width="4" height="6" fill="#ff6ad5"/>
-  <rect class="current-window" x="1511" y="321" width="4" height="6" fill="#fffd82"/>
-  <rect class="current-window" x="1502" y="309" width="4" height="6" fill="#06ffa5"/>
-  <rect class="current-window" x="1511" y="309" width="4" height="6" fill="#00d8ff"/>
-  <rect class="current-window" x="1502" y="297" width="4" height="6" fill="#ff6ad5"/>
-  <rect class="current-window" x="1511" y="297" width="4" height="6" fill="#fffd82"/>
-  <path class="now-pulse" d="M1493 265h31v160h-31z" fill="none" stroke="#06ffa5" stroke-width="2"/>
+  <rect x="1498" y="353" width="21" height="167" fill="#0c1420" stroke="#00d8ff" stroke-width="2" opacity="0.98"/>
+  <rect x="1502" y="346" width="13" height="9" fill="#0c1420" stroke="#00d8ff" stroke-width="2"/>
+  <rect class="current-window" x="1502" y="507" width="4" height="6" fill="#06ffa5"/>
+  <rect class="current-window" x="1511" y="507" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1502" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1511" y="495" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1502" y="483" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="current-window" x="1511" y="483" width="4" height="6" fill="#00d8ff"/>
+  <rect class="current-window" x="1502" y="471" width="4" height="6" fill="#ff6ad5"/>
+  <rect x="1511" y="471" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1502" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1511" y="459" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="current-window" x="1502" y="447" width="4" height="6" fill="#ff6ad5"/>
+  <rect class="current-window" x="1511" y="447" width="4" height="6" fill="#fffd82"/>
+  <rect x="1502" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1511" y="435" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1502" y="423" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="current-window" x="1511" y="423" width="4" height="6" fill="#fffd82"/>
+  <rect class="current-window" x="1502" y="411" width="4" height="6" fill="#06ffa5"/>
+  <rect x="1511" y="411" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1502" y="399" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect class="current-window" x="1511" y="399" width="4" height="6" fill="#fffd82"/>
+  <rect class="current-window" x="1502" y="387" width="4" height="6" fill="#06ffa5"/>
+  <rect class="current-window" x="1511" y="387" width="4" height="6" fill="#00d8ff"/>
+  <rect x="1502" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <rect x="1511" y="375" width="4" height="6" fill="#332344" opacity=".55"/>
+  <path class="now-pulse" d="M1493 339h31v188h-31z" fill="none" stroke="#06ffa5" stroke-width="2" style="animation-delay:3.2s"/>
 </g>
-  </g>
+    </g>
 
-  <g>
-      <g><rect x="70" y="426" width="2" height="8" fill="#7d668f"/><text x="70" y="456" fill="#a997b7" font-size="17" font-weight="700" text-anchor="start">JUL '25</text></g>
-      <g><rect x="434" y="426" width="2" height="8" fill="#7d668f"/><text x="434" y="456" fill="#a997b7" font-size="17" font-weight="700" text-anchor="middle">OCT</text></g>
-      <g><rect x="798" y="426" width="2" height="8" fill="#7d668f"/><text x="798" y="456" fill="#a997b7" font-size="17" font-weight="700" text-anchor="middle">JAN '26</text></g>
-      <g><rect x="1162" y="426" width="2" height="8" fill="#7d668f"/><text x="1162" y="456" fill="#a997b7" font-size="17" font-weight="700" text-anchor="middle">APR</text></g>
-      <g><rect x="1519" y="426" width="2" height="8" fill="#06ffa5"/><text x="1519" y="456" fill="#06ffa5" font-size="17" font-weight="700" text-anchor="end">NOW</text></g>
-  </g>
+    <g>
+        <g><rect x="70" y="528" width="2" height="8" fill="#7d668f"/><text x="70" y="560" fill="#a997b7" font-size="16" font-weight="700" text-anchor="start">JUL '25</text></g>
+      <g><rect x="434" y="528" width="2" height="8" fill="#7d668f"/><text x="434" y="560" fill="#a997b7" font-size="16" font-weight="700" text-anchor="middle">OCT</text></g>
+      <g><rect x="798" y="528" width="2" height="8" fill="#7d668f"/><text x="798" y="560" fill="#a997b7" font-size="16" font-weight="700" text-anchor="middle">JAN '26</text></g>
+      <g><rect x="1162" y="528" width="2" height="8" fill="#7d668f"/><text x="1162" y="560" fill="#a997b7" font-size="16" font-weight="700" text-anchor="middle">APR</text></g>
+      <g><rect x="1519" y="528" width="2" height="8" fill="#06ffa5"/><text x="1519" y="560" fill="#06ffa5" font-size="16" font-weight="700" text-anchor="end">NOW</text></g>
+    </g>
 
-  <text x="70" y="536" fill="#b7a9c2" font-size="17" font-weight="700">TOWER HEIGHT + LIT WINDOWS = WEEKLY COMMITS</text>
-  <g transform="translate(1116 519)">
-    <rect width="15" height="15" fill="#342b43"/><text x="26" y="14" fill="#a997b7" font-size="16">0</text>
-    <rect x="82" width="15" height="15" fill="#06ffa5"/><text x="108" y="14" fill="#a997b7" font-size="16">LOW</text>
-    <rect x="190" width="15" height="15" fill="#00d8ff"/><text x="216" y="14" fill="#a997b7" font-size="16">BUSY</text>
-    <rect x="312" width="15" height="15" fill="#ff6ad5"/><text x="338" y="14" fill="#a997b7" font-size="16">PEAK</text>
-  </g>
+    <rect y="648" width="1600" height="72" fill="#090c13" opacity=".94"/>
+    <line x1="0" y1="648" x2="1600" y2="648" stroke="#315ee8" stroke-width="2" opacity=".62"/>
 
-  <rect width="1600" height="560" fill="url(#scanlines)" pointer-events="none"/>
+    <text x="70" y="686" fill="#b7a9c2" font-size="14" font-weight="700">TOWER HEIGHT + LIT WINDOWS = WEEKLY COMMITS</text>
+    <g transform="translate(706 674)">
+      <rect width="12" height="12" fill="#342b43"/><text x="22" y="11" fill="#a997b7" font-size="13">0</text>
+      <rect x="64" width="12" height="12" fill="#06ffa5"/><text x="86" y="11" fill="#a997b7" font-size="13">LOW</text>
+      <rect x="162" width="12" height="12" fill="#00d8ff"/><text x="184" y="11" fill="#a997b7" font-size="13">BUSY</text>
+      <rect x="272" width="12" height="12" fill="#ff6ad5"/><text x="294" y="11" fill="#a997b7" font-size="13">PEAK</text>
+    </g>
+
+    <g opacity=".86">
+      <rect class="website-pulse" x="1320" y="675" width="6" height="6" fill="#315ee8"/>
+      <text x="1530" y="682" fill="#aebbe2" font-size="14" font-weight="700" text-anchor="end">OPEN DESKTOP ARCHIVE</text>
+      <text x="1530" y="704" fill="#8091be" font-size="12" text-anchor="end">HOME.ADAMLLLL.COM</text>
+      <line x1="1320" y1="712" x2="1530" y2="712" stroke="#315ee8" stroke-width="1" opacity=".42"/>
+    </g>
+
+    <g class="boot-scan" pointer-events="none">
+      <rect x="-140" y="0" width="72" height="648" fill="url(#scan-beam)"/>
+    </g>
+    <rect width="1600" height="720" fill="url(#scanlines)" pointer-events="none"/>
+  </g>
 </svg>

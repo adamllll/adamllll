@@ -181,7 +181,11 @@ def activity_strength(value: int, peak: int) -> float:
     return min(1.0, math.sqrt(value / max(1, peak)))
 
 
-BASE_Y = 418
+CANVAS_WIDTH = 1600
+CANVAS_HEIGHT = 720
+BASE_Y = 520
+REFLECTION_BOTTOM = 648
+WEBSITE_LABEL = "HOME.ADAMLLLL.COM"
 
 
 def activity_palette(value: int) -> tuple[str, str]:
@@ -199,7 +203,7 @@ def activity_palette(value: int) -> tuple[str, str]:
 def tower_geometry(index: int, value: int, peak: int) -> tuple[int, int, int, str, str]:
     x = 70 + index * 28
     amount = activity_strength(value, peak)
-    height = 14 if value == 0 else 42 + round(218 * amount)
+    height = 18 if value == 0 else 50 + round(260 * amount)
     edge, body = activity_palette(value)
     return x, BASE_Y - height, height, edge, body
 
@@ -225,7 +229,7 @@ def render_tower(index: int, value: int, peak: int, *, latest: bool) -> str:
     x, y, height, edge, body = tower_geometry(index, value, peak)
     amount = activity_strength(value, peak)
     cap = 7 if height >= 50 else 0
-    delay = index * 0.019
+    delay = 0.9 + index * 0.022
     contribution_label = "contribution" if value == 1 else "contributions"
     parts = [
         f'<g class="tower" style="animation-delay:{delay:.3f}s">',
@@ -255,9 +259,15 @@ def render_tower(index: int, value: int, peak: int, *, latest: bool) -> str:
             window_x = x + 4 + column * 9
             if slot in lit_slots:
                 color = colors[(slot + index) % len(colors)]
-                class_attr = ' class="current-window"' if latest else ""
+                window_class = ""
+                window_style = ""
+                if latest:
+                    window_class = ' class="current-window"'
+                elif (slot * 13 + index * 7) % 29 == 0:
+                    window_class = ' class="ambient-window"'
+                    window_style = f' style="animation-delay:{2.8 + (index % 9) * 0.37:.2f}s"'
                 parts.append(
-                    f'  <rect{class_attr} x="{window_x}" y="{window_y}" '
+                    f'  <rect{window_class}{window_style} x="{window_x}" y="{window_y}" '
                     f'width="4" height="6" fill="{color}"/>'
                 )
             else:
@@ -271,14 +281,14 @@ def render_tower(index: int, value: int, peak: int, *, latest: bool) -> str:
             [
                 f'  <rect x="{x + 10}" y="{y - 11}" width="2" height="11" fill="{edge}"/>',
                 f'  <rect class="beacon" x="{x + 7}" y="{y - 16}" '
-                'width="8" height="7" fill="#fffd82"/>',
+                f'width="8" height="7" fill="#fffd82" style="animation-delay:{3.0 + (index % 7) * 0.29:.2f}s"/>',
             ]
         )
 
     if latest and value > 0:
         parts.append(
             f'  <path class="now-pulse" d="M{x - 5} {y - 7}h31v{height + 14}h-31z" '
-            'fill="none" stroke="#06ffa5" stroke-width="2"/>'
+            'fill="none" stroke="#06ffa5" stroke-width="2" style="animation-delay:3.2s"/>'
         )
     parts.append("</g>")
     return "\n".join(parts)
@@ -365,121 +375,176 @@ def render(activity: ActivityData) -> str:
         for index, value in enumerate(weekly)
     )
     ticks = "\n      ".join(
-        f'<g><rect x="{x}" y="426" width="2" height="8" '
+        f'<g><rect x="{x}" y="{BASE_Y + 8}" width="2" height="8" '
         f'fill="{("#06ffa5" if label == "NOW" else "#7d668f")}"/>'
-        f'<text x="{x}" y="456" '
+        f'<text x="{x}" y="{BASE_Y + 40}" '
         f'fill="{("#06ffa5" if label == "NOW" else "#a997b7")}" '
-        f'font-size="17" font-weight="700" text-anchor="{anchor}">{label}</text></g>'
+        f'font-size="16" font-weight="700" text-anchor="{anchor}">{label}</text></g>'
         for x, label, anchor in timeline_ticks()
     )
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{CANVAS_WIDTH}" height="{CANVAS_HEIGHT}" viewBox="0 0 {CANVAS_WIDTH} {CANVAS_HEIGHT}" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
   <title id="title">{safe_username}'s contribution city</title>
-  <desc id="desc">A vaporwave pixel skyline generated from {rolling_total} contributions across {activity.active_days} active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain {activity.last_7} contributions.</desc>
+  <desc id="desc">An animated pixel night city generated from {rolling_total} contributions across {activity.active_days} active days. Each of the 52 towers represents one week; height and lit windows increase with activity. The last seven days contain {activity.last_7} contributions.</desc>
   <metadata>source={activity.source}; user={safe_username}; window=52-sunday-weeks; calendar-total={activity.total}; rolling-total={rolling_total}</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0d1117"/>
-      <stop offset=".6" stop-color="#0e1019"/>
-      <stop offset="1" stop-color="#151020"/>
+      <stop offset="0" stop-color="#090d16"/>
+      <stop offset=".58" stop-color="#0c101a"/>
+      <stop offset="1" stop-color="#161022"/>
     </linearGradient>
     <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#fffd82"/>
       <stop offset=".45" stop-color="#ff9871"/>
       <stop offset="1" stop-color="#ff4db8"/>
     </linearGradient>
+    <linearGradient id="scan-beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00d8ff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#00d8ff" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#00d8ff" stop-opacity="0"/>
+    </linearGradient>
     <linearGradient id="reflection-alpha" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".5"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#f7f3ff" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#f7f3ff" stop-opacity="0"/>
     </linearGradient>
     <pattern id="stars" width="104" height="76" patternUnits="userSpaceOnUse">
-      <rect x="15" y="13" width="2" height="2" fill="#ffffff" opacity=".42"/>
+      <rect x="15" y="13" width="2" height="2" fill="#f7f3ff" opacity=".42"/>
       <rect x="67" y="21" width="3" height="3" fill="#00d8ff" opacity=".25"/>
       <rect x="39" y="57" width="2" height="2" fill="#ff6ad5" opacity=".34"/>
-      <rect x="91" y="65" width="2" height="2" fill="#ffffff" opacity=".2"/>
+      <rect x="91" y="65" width="2" height="2" fill="#f7f3ff" opacity=".2"/>
     </pattern>
     <pattern id="scanlines" width="8" height="8" patternUnits="userSpaceOnUse">
-      <rect width="8" height="4" fill="#000000" opacity="0"/>
-      <rect y="4" width="8" height="4" fill="#000000" opacity=".1"/>
+      <rect width="8" height="4" fill="#05070d" opacity="0"/>
+      <rect y="4" width="8" height="4" fill="#05070d" opacity=".09"/>
     </pattern>
     <clipPath id="pixel-sun">
-      <path d="M1184 116h88v8h32v8h24v16h16v16h8v24h8v32h8v72h-8v32h-8v24h-16v16h-24v8h-32v8h-88v-8h-32v-8h-24v-16h-16v-24h-8v-32h-8v-72h8v-32h8v-24h16v-16h24v-8h32v-8z"/>
+      <path d="M1184 116h88v8h32v8h24v16h16v16h8v24h8v32h8v72h-8v32h-8v24h-16v16h-24v8h-32v8h-88v-8h-32v-8h-24v-16h-16v-24h-8v-32h-8v-72h8v-32h8v-24h16v-16h24v-8h32v-8z" transform="translate(0 72)"/>
     </clipPath>
     <mask id="reflection-mask">
-      <rect x="0" y="418" width="1600" height="142" fill="url(#reflection-alpha)"/>
+      <rect x="0" y="{BASE_Y}" width="{CANVAS_WIDTH}" height="{REFLECTION_BOTTOM - BASE_Y}" fill="url(#reflection-alpha)"/>
     </mask>
-    <filter id="sun-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
     <style>
       text {{ font-family: "Courier New", Consolas, monospace; }}
-      .tower {{ transform-box: fill-box; transform-origin: center bottom; animation: city-boot .68s steps(6, end) both; }}
-      .beacon {{ animation: beacon 3.2s steps(2, end) infinite; }}
-      .now-pulse {{ animation: now-pulse 3.2s steps(4, end) infinite; }}
-      .current-window {{ animation: current-window 3.2s steps(2, end) infinite; }}
-      @keyframes city-boot {{ from {{ transform: scaleY(.04); opacity: .15; }} to {{ transform: scaleY(1); opacity: 1; }} }}
-      @keyframes beacon {{ 0%, 42%, 60%, 100% {{ opacity: 1; }} 51% {{ opacity: .18; }} }}
-      @keyframes now-pulse {{ 0%, 100% {{ opacity: .16; }} 50% {{ opacity: .78; }} }}
-      @keyframes current-window {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: .38; }} }}
+      .poster {{ animation: poster-in .45s cubic-bezier(.16, 1, .3, 1) both; }}
+      .wordmark {{ transform-box: fill-box; transform-origin: center; animation: wordmark-lock .92s steps(7, end) .16s both; }}
+      .wordmark-echo {{ animation: wordmark-echo 1.15s steps(5, end) .16s both; }}
+      .star-field-slow {{ animation: star-drift 18s steps(18, end) 3s infinite alternate; }}
+      .star-field-pulse {{ animation: star-pulse 7.6s steps(4, end) 3.2s infinite; }}
+      .sun-disc {{ transform-box: fill-box; transform-origin: center; animation: sun-breathe 8s steps(5, end) 3.1s infinite; }}
+      .tower {{ transform-box: fill-box; transform-origin: center bottom; animation: city-boot .9s steps(7, end) both; }}
+      .ambient-window {{ animation: ambient-window 8.2s steps(2, end) infinite; }}
+      .beacon {{ animation: beacon 4.2s steps(2, end) infinite; }}
+      .now-pulse {{ animation: now-pulse 3.8s steps(4, end) infinite; }}
+      .current-window {{ animation: current-window 3.8s steps(2, end) infinite; }}
+      .horizon-signal {{ animation: signal-run 6.4s linear 2.8s infinite; }}
+      .reflection-city {{ animation: reflection-shift 6.8s steps(4, end) 3s infinite alternate; }}
+      .road-grid {{ animation: grid-breathe 8.6s steps(4, end) 3s infinite; }}
+      .boot-scan {{ animation: boot-scan 2.8s cubic-bezier(.16, 1, .3, 1) .34s both; }}
+      .website-pulse {{ animation: website-pulse 4.6s steps(2, end) 3.2s infinite; }}
+      @keyframes poster-in {{ from {{ opacity: .72; }} to {{ opacity: 1; }} }}
+      @keyframes wordmark-lock {{ 0% {{ transform: translateX(-12px); opacity: .54; }} 58% {{ transform: translateX(4px); opacity: .9; }} 100% {{ transform: translateX(0); opacity: 1; }} }}
+      @keyframes wordmark-echo {{ 0%, 68% {{ opacity: .34; }} 100% {{ opacity: .12; }} }}
+      @keyframes star-drift {{ from {{ transform: translateX(-20px); opacity: .62; }} to {{ transform: translateX(28px); opacity: .88; }} }}
+      @keyframes star-pulse {{ 0%, 100% {{ opacity: .12; }} 50% {{ opacity: .32; }} }}
+      @keyframes sun-breathe {{ 0%, 100% {{ opacity: .88; }} 50% {{ opacity: 1; }} }}
+      @keyframes city-boot {{ from {{ transform: scaleY(.04); opacity: .18; }} to {{ transform: scaleY(1); opacity: 1; }} }}
+      @keyframes ambient-window {{ 0%, 8%, 12%, 100% {{ opacity: 1; }} 10% {{ opacity: .24; }} }}
+      @keyframes beacon {{ 0%, 42%, 60%, 100% {{ opacity: 1; }} 51% {{ opacity: .16; }} }}
+      @keyframes now-pulse {{ 0%, 100% {{ opacity: .14; }} 50% {{ opacity: .74; }} }}
+      @keyframes current-window {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: .36; }} }}
+      @keyframes signal-run {{ from {{ stroke-dashoffset: 0; }} to {{ stroke-dashoffset: -200; }} }}
+      @keyframes reflection-shift {{ from {{ transform: translateX(-2px); opacity: .24; }} to {{ transform: translateX(2px); opacity: .31; }} }}
+      @keyframes grid-breathe {{ 0%, 100% {{ opacity: .25; }} 50% {{ opacity: .36; }} }}
+      @keyframes boot-scan {{ 0% {{ transform: translateX(0); opacity: 0; }} 12% {{ opacity: .5; }} 86% {{ opacity: .28; }} 100% {{ transform: translateX(1820px); opacity: 0; }} }}
+      @keyframes website-pulse {{ 0%, 100% {{ opacity: .46; }} 50% {{ opacity: 1; }} }}
       @media (prefers-reduced-motion: reduce) {{
-        .tower, .beacon, .now-pulse, .current-window {{ animation: none; }}
+        .poster, .wordmark, .wordmark-echo, .star-field-slow, .star-field-pulse,
+        .sun-disc, .tower, .ambient-window, .beacon, .now-pulse, .current-window,
+        .horizon-signal, .reflection-city, .road-grid, .website-pulse {{ animation: none; }}
+        .boot-scan {{ display: none; }}
       }}
     </style>
   </defs>
 
-  <rect width="1600" height="560" fill="url(#night)"/>
-  <rect width="1600" height="560" fill="url(#stars)"/>
+  <g class="poster">
+    <rect width="{CANVAS_WIDTH}" height="{CANVAS_HEIGHT}" fill="url(#night)"/>
+    <g class="star-field-slow">
+      <rect x="-80" width="1760" height="{BASE_Y}" fill="url(#stars)"/>
+    </g>
+    <g class="star-field-pulse" opacity=".22" transform="translate(41 29)">
+      <rect x="-80" width="1760" height="{BASE_Y - 40}" fill="url(#stars)"/>
+    </g>
 
-  <g clip-path="url(#pixel-sun)" opacity=".94" filter="url(#sun-glow)">
-    <rect x="1080" y="106" width="320" height="300" fill="url(#sun)"/>
-    <rect x="1070" y="224" width="340" height="8" fill="#11101a"/>
-    <rect x="1070" y="244" width="340" height="10" fill="#11101a"/>
-    <rect x="1070" y="268" width="340" height="13" fill="#11101a"/>
-    <rect x="1070" y="298" width="340" height="17" fill="#11101a"/>
-    <rect x="1070" y="336" width="340" height="22" fill="#11101a"/>
+    <g class="sun-disc" clip-path="url(#pixel-sun)" opacity=".94">
+      <rect x="1080" y="178" width="320" height="300" fill="url(#sun)"/>
+      <rect x="1070" y="296" width="340" height="8" fill="#11101a"/>
+      <rect x="1070" y="316" width="340" height="10" fill="#11101a"/>
+      <rect x="1070" y="340" width="340" height="13" fill="#11101a"/>
+      <rect x="1070" y="370" width="340" height="17" fill="#11101a"/>
+      <rect x="1070" y="408" width="340" height="22" fill="#11101a"/>
+    </g>
+
+    <g class="wordmark" aria-hidden="true">
+      <text class="wordmark-echo" x="56" y="264" fill="#00d8ff" font-family="Arial Black, Arial, sans-serif" font-size="196" font-weight="900" opacity=".12">ADAM</text>
+      <text class="wordmark-echo" x="72" y="270" fill="#ff6ad5" font-family="Arial Black, Arial, sans-serif" font-size="196" font-weight="900" opacity=".1">ADAM</text>
+      <text x="64" y="266" fill="#163a91" stroke="#315ee8" stroke-width="3" font-family="Arial Black, Arial, sans-serif" font-size="196" font-weight="900" opacity=".44">ADAM</text>
+    </g>
+
+    <text x="70" y="58" fill="#00d8ff" font-size="19" font-weight="700">{safe_username}</text>
+    <text x="70" y="92" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900">COMMIT CITY</text>
+    <text x="70" y="119" fill="#a997b7" font-size="15">52 TOWERS / ONE ROLLING YEAR</text>
+
+    <text x="1530" y="61" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">{rolling_total} CONTRIBUTIONS</text>
+    <text x="1530" y="89" fill="#a997b7" font-size="15" text-anchor="end">REAL ACTIVITY / LIVE CITY SIGNAL</text>
+
+    <g transform="translate(0 102)">
+      <path d="M0 416V384h42v-20h34v12h38v-42h32v26h36v-18h34v36h30v-60h36v30h34v-22h36v46h32v-28h36v72z" fill="#080c14" opacity=".64"/>
+      <path d="M872 416v-36h32v-32h34v18h38v-52h34v38h34v-24h38v42h32v-66h38v28h34v-40h38v58h34v-32h38v98z" fill="#11101c" opacity=".58"/>
+    </g>
+
+    <path d="M0 {BASE_Y}h{CANVAS_WIDTH}v{REFLECTION_BOTTOM - BASE_Y}H0z" fill="#24152f" opacity=".18"/>
+    <g class="road-grid" fill="none" stroke="#76509b" stroke-width="2" opacity=".3">
+      <path d="M800 {BASE_Y}L52 {REFLECTION_BOTTOM}M800 {BASE_Y}L312 {REFLECTION_BOTTOM}M800 {BASE_Y}L530 {REFLECTION_BOTTOM}M800 {BASE_Y}L1070 {REFLECTION_BOTTOM}M800 {BASE_Y}L1288 {REFLECTION_BOTTOM}M800 {BASE_Y}L1548 {REFLECTION_BOTTOM}"/>
+      <path d="M0 {BASE_Y + 14}h{CANVAS_WIDTH}M0 {BASE_Y + 34}h{CANVAS_WIDTH}M0 {BASE_Y + 58}h{CANVAS_WIDTH}M0 {BASE_Y + 88}h{CANVAS_WIDTH}M0 {REFLECTION_BOTTOM - 2}h{CANVAS_WIDTH}"/>
+    </g>
+    <line x1="0" y1="{BASE_Y}" x2="{CANVAS_WIDTH}" y2="{BASE_Y}" stroke="#ff6ad5" stroke-width="3" opacity=".52"/>
+    <line class="horizon-signal" x1="0" y1="{BASE_Y - 4}" x2="{CANVAS_WIDTH}" y2="{BASE_Y - 4}" stroke="#00d8ff" stroke-width="2" stroke-dasharray="8 42" opacity=".52"/>
+
+    <g class="reflection-city" mask="url(#reflection-mask)" opacity=".28">
+        {reflections}
+    </g>
+
+    <g>
+        {towers}
+    </g>
+
+    <g>
+        {ticks}
+    </g>
+
+    <rect y="{REFLECTION_BOTTOM}" width="{CANVAS_WIDTH}" height="{CANVAS_HEIGHT - REFLECTION_BOTTOM}" fill="#090c13" opacity=".94"/>
+    <line x1="0" y1="{REFLECTION_BOTTOM}" x2="{CANVAS_WIDTH}" y2="{REFLECTION_BOTTOM}" stroke="#315ee8" stroke-width="2" opacity=".62"/>
+
+    <text x="70" y="686" fill="#b7a9c2" font-size="14" font-weight="700">TOWER HEIGHT + LIT WINDOWS = WEEKLY COMMITS</text>
+    <g transform="translate(706 674)">
+      <rect width="12" height="12" fill="#342b43"/><text x="22" y="11" fill="#a997b7" font-size="13">0</text>
+      <rect x="64" width="12" height="12" fill="#06ffa5"/><text x="86" y="11" fill="#a997b7" font-size="13">LOW</text>
+      <rect x="162" width="12" height="12" fill="#00d8ff"/><text x="184" y="11" fill="#a997b7" font-size="13">BUSY</text>
+      <rect x="272" width="12" height="12" fill="#ff6ad5"/><text x="294" y="11" fill="#a997b7" font-size="13">PEAK</text>
+    </g>
+
+    <g opacity=".86">
+      <rect class="website-pulse" x="1320" y="675" width="6" height="6" fill="#315ee8"/>
+      <text x="1530" y="682" fill="#aebbe2" font-size="14" font-weight="700" text-anchor="end">OPEN DESKTOP ARCHIVE</text>
+      <text x="1530" y="704" fill="#8091be" font-size="12" text-anchor="end">{WEBSITE_LABEL}</text>
+      <line x1="1320" y1="712" x2="1530" y2="712" stroke="#315ee8" stroke-width="1" opacity=".42"/>
+    </g>
+
+    <g class="boot-scan" pointer-events="none">
+      <rect x="-140" y="0" width="72" height="{REFLECTION_BOTTOM}" fill="url(#scan-beam)"/>
+    </g>
+    <rect width="{CANVAS_WIDTH}" height="{CANVAS_HEIGHT}" fill="url(#scanlines)" pointer-events="none"/>
   </g>
-
-  <text x="67" y="62" fill="#00d8ff" font-size="21" font-weight="700">{safe_username}</text>
-  <text x="67" y="110" fill="#00d8ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" opacity=".52">COMMIT CITY</text>
-  <text x="73" y="110" fill="#ff6ad5" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" opacity=".52">COMMIT CITY</text>
-  <text x="70" y="110" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900">COMMIT CITY</text>
-  <text x="70" y="141" fill="#a997b7" font-size="18">52 TOWERS. ONE ROLLING YEAR.</text>
-
-  <text x="1530" y="62" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">{rolling_total} CONTRIBUTIONS</text>
-  <text x="1530" y="92" fill="#a997b7" font-size="17" text-anchor="end">HEIGHT + WINDOWS FOLLOW REAL ACTIVITY</text>
-
-  <path d="M0 416V384h42v-20h34v12h38v-42h32v26h36v-18h34v36h30v-60h36v30h34v-22h36v46h32v-28h36v72z" fill="#0b0e14" opacity=".55"/>
-  <path d="M872 416v-36h32v-32h34v18h38v-52h34v38h34v-24h38v42h32v-66h38v28h34v-40h38v58h34v-32h38v98z" fill="#10101a" opacity=".48"/>
-
-  <path d="M0 418h1600v142H0z" fill="#24152f" opacity=".18"/>
-  <g fill="none" stroke="#9d5fc4" stroke-width="2" opacity=".34">
-    <path d="M800 418L52 560M800 418L312 560M800 418L530 560M800 418L1070 560M800 418L1288 560M800 418L1548 560"/>
-    <path d="M0 430h1600M0 450h1600M0 480h1600M0 516h1600M0 558h1600"/>
-  </g>
-  <line x1="0" y1="418" x2="1600" y2="418" stroke="#ff6ad5" stroke-width="3" opacity=".56"/>
-
-  <g mask="url(#reflection-mask)" opacity=".3">
-      {reflections}
-  </g>
-
-  <g>
-      {towers}
-  </g>
-
-  <g>
-      {ticks}
-  </g>
-
-  <text x="70" y="536" fill="#b7a9c2" font-size="17" font-weight="700">TOWER HEIGHT + LIT WINDOWS = WEEKLY COMMITS</text>
-  <g transform="translate(1116 519)">
-    <rect width="15" height="15" fill="#342b43"/><text x="26" y="14" fill="#a997b7" font-size="16">0</text>
-    <rect x="82" width="15" height="15" fill="#06ffa5"/><text x="108" y="14" fill="#a997b7" font-size="16">LOW</text>
-    <rect x="190" width="15" height="15" fill="#00d8ff"/><text x="216" y="14" fill="#a997b7" font-size="16">BUSY</text>
-    <rect x="312" width="15" height="15" fill="#ff6ad5"/><text x="338" y="14" fill="#a997b7" font-size="16">PEAK</text>
-  </g>
-
-  <rect width="1600" height="560" fill="url(#scanlines)" pointer-events="none"/>
 </svg>
 '''
 
