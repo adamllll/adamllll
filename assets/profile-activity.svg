@@ -1,12 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
-  <title id="title">ADAM contribution signal</title>
-  <desc id="desc">A data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 244 GitHub contributions across 76 active days, with 9 contributions in the last seven days.</desc>
-  <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=244; rolling-total=244</metadata>
+  <title id="title">ADAM_OS contribution signal</title>
+  <desc id="desc">A night-mode ADAM_OS profile window with a data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 244 GitHub contributions across 76 active days, with 9 contributions in the last seven days.</desc>
+  <metadata>source=github-graphql-viewer; user=adamllll; window=52-sunday-weeks; calendar-total=244; rolling-total=244</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#090d16"/>
       <stop offset=".64" stop-color="#0c101a"/>
       <stop offset="1" stop-color="#161022"/>
+    </linearGradient>
+    <linearGradient id="titlebar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#13275a"/>
+      <stop offset=".58" stop-color="#315ee8"/>
+      <stop offset="1" stop-color="#4d3a9c"/>
+    </linearGradient>
+    <linearGradient id="taskbar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#142242"/>
+      <stop offset="1" stop-color="#0d1428"/>
     </linearGradient>
     <linearGradient id="activity-scan-fill" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#f7f3ff" stop-opacity="0"/>
@@ -29,14 +38,39 @@
     <style>
       text { font-family: "Courier New", Consolas, monospace; }
       .poster { animation: poster-in .45s cubic-bezier(.16, 1, .3, 1) both; }
-      .word-outline { animation: outline-lock .8s steps(6, end) .12s both; }
+      .word-outline { animation: outline-lock .38s steps(4, end) 1.68s both; }
       .star-field { animation: star-drift 20s steps(20, end) 2.8s infinite alternate; }
-      .activity-band { transform-box: fill-box; transform-origin: center bottom; animation: band-rise .85s steps(7, end) both; }
+      .activity-band { transform-box: fill-box; transform-origin: center bottom; animation: band-rise .62s steps(6, end) both; }
       .timeline-band { transform-box: fill-box; transform-origin: center bottom; animation: timeline-rise .55s steps(5, end) both; }
       .activity-scan { animation: activity-scan 9.72s cubic-bezier(.16, 1, .3, 1) 2.2s infinite; }
       .recent-band { animation: recent-pulse 3.4s steps(4, end) 2.8s infinite; }
       .signal-rail { animation: signal-run 7.2s linear 2.5s infinite; }
       .website-pulse { animation: website-pulse 4.6s steps(2, end) 3.2s infinite; }
+      .boot-copy { animation: boot-copy 1.8s steps(5, end) .08s both; }
+      .os-button { animation: button-boot 1.8s steps(5, end) .72s both; }
+      .boot-thread {
+        opacity: var(--thread-opacity);
+        stroke-dasharray: 476;
+        stroke-dashoffset: 476;
+        animation-name: conduit-rise, conduit-clear;
+        animation-duration: .44s, .24s;
+        animation-timing-function: steps(6, end), steps(3, end);
+        animation-fill-mode: both, forwards;
+      }
+      .boot-pulse {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: pulse-rise .44s steps(6, end) both;
+      }
+      .maximize-shell {
+        transform-box: fill-box;
+        transform-origin: 96% 96%;
+        animation: maximize-open .72s steps(8, end) .08s both, maximize-clear .28s steps(3, end) 1.52s forwards;
+      }
+      .cta-launch { animation: cta-launch .72s steps(5, end) .02s both; }
+      .word-lock-ghost { animation: lock-clear .34s steps(4, end) 1.74s both; }
+      .lock-cyan { animation: lock-cyan .34s steps(4, end) 1.74s both; }
+      .lock-pink { animation: lock-pink .34s steps(4, end) 1.74s both; }
       @keyframes poster-in { from { opacity: .72; } to { opacity: 1; } }
       @keyframes outline-lock { 0% { transform: translateX(-8px); opacity: .18; } 58% { transform: translateX(3px); opacity: .56; } 100% { transform: translateX(0); opacity: .48; } }
       @keyframes star-drift { from { transform: translateX(-18px); opacity: .58; } to { transform: translateX(24px); opacity: .82; } }
@@ -46,9 +80,42 @@
       @keyframes recent-pulse { 0%, 100% { opacity: 0; } 48% { opacity: .16; } 58% { opacity: .04; } }
       @keyframes signal-run { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -200; } }
       @keyframes website-pulse { 0%, 100% { opacity: .46; } 50% { opacity: 1; } }
+      @keyframes boot-copy {
+        0%, 70% { opacity: .9; }
+        100% { opacity: 0; }
+      }
+      @keyframes button-boot {
+        0% { opacity: .18; transform: translateY(2px); }
+        68% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes conduit-rise { from { stroke-dashoffset: 476; } to { stroke-dashoffset: 0; } }
+      @keyframes conduit-clear { from { opacity: var(--thread-opacity); } to { opacity: 0; } }
+      @keyframes pulse-rise {
+        0% { transform: translateY(0); opacity: 0; }
+        18% { opacity: .92; }
+        82% { opacity: .72; }
+        100% { transform: translateY(-458px); opacity: 0; }
+      }
+      @keyframes maximize-open {
+        0% { transform: scale(.17, .045); opacity: .2; }
+        18% { opacity: 1; }
+        100% { transform: scale(1); opacity: .86; }
+      }
+      @keyframes maximize-clear { from { opacity: .86; } to { opacity: 0; } }
+      @keyframes cta-launch {
+        0%, 100% { opacity: 0; }
+        24% { opacity: 1; }
+        54% { opacity: .26; }
+        72% { opacity: .9; }
+      }
+      @keyframes lock-clear { 0% { opacity: 0; } 20%, 68% { opacity: .76; } 100% { opacity: 0; } }
+      @keyframes lock-cyan { 0% { transform: translateX(-8px); } 58% { transform: translateX(3px); } 100% { transform: translateX(0); } }
+      @keyframes lock-pink { 0% { transform: translateX(8px); } 58% { transform: translateX(-3px); } 100% { transform: translateX(0); } }
       @media (prefers-reduced-motion: reduce) {
         .poster, .word-outline, .star-field, .activity-band, .timeline-band,
-        .recent-band, .signal-rail, .website-pulse { animation: none; }
+        .recent-band, .signal-rail, .website-pulse, .os-button { animation: none; }
+        .boot-copy, .boot-conduits, .maximize-shell, .word-lock-ghost, .cta-launch { display: none; }
         .activity-scan { display: none; }
       }
     </style>
@@ -60,11 +127,101 @@
       <rect x="-80" width="1760" height="660" fill="url(#stars)"/>
     </g>
 
-    <text x="60" y="44" fill="#00d8ff" font-size="18" font-weight="700">adamllll</text>
-    <text x="60" y="78" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="900">52 WEEKS SHAPE THE NAME</text>
-    <text x="1540" y="51" fill="#fffd82" font-size="30" font-weight="700" text-anchor="end">244 CONTRIBUTIONS</text>
-    <text x="1540" y="79" fill="#a997b7" font-size="14" text-anchor="end">ROLLING YEAR / LIVE GITHUB ACTIVITY</text>
-    <line x1="60" y1="96" x2="1540" y2="96" stroke="#315ee8" stroke-width="2" opacity=".42"/>
+    <g>
+      <rect x="28" y="18" width="1544" height="34" fill="url(#titlebar)" stroke="#8091be" stroke-width="2"/>
+      <line x1="30" y1="20" x2="1570" y2="20" stroke="#f7f3ff" stroke-width="2" opacity=".28"/>
+      <line x1="30" y1="50" x2="1570" y2="50" stroke="#05070d" stroke-width="2" opacity=".82"/>
+      <text x="44" y="41" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="16" font-weight="900">ADAM_OS // CONTRIBUTION SIGNAL</text>
+      <text class="boot-copy" x="1280" y="40" fill="#fffd82" font-size="12" font-weight="700" text-anchor="end">BOOT SEQUENCE</text>
+      <rect x="1480" y="31" width="8" height="8" fill="#06ffa5" opacity=".9"/>
+      <text x="1502" y="40" fill="#d6e3ff" font-size="12" font-weight="700">LIVE LINK</text>
+    </g>
+
+    <text x="60" y="80" fill="#00d8ff" font-size="16" font-weight="700">adamllll</text>
+    <text x="60" y="108" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="900">52 WEEKS SHAPE THE NAME</text>
+    <text x="1540" y="82" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">244 CONTRIBUTIONS</text>
+    <text x="1540" y="107" fill="#a997b7" font-size="14" text-anchor="end">ROLLING YEAR / LIVE GITHUB ACTIVITY</text>
+    <line x1="60" y1="116" x2="1540" y2="116" stroke="#315ee8" stroke-width="2" opacity=".42"/>
+
+    <g class="boot-conduits" pointer-events="none">
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.140s,0.580s" x1="72.23" y1="602" x2="72.23" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.166s,0.606s" x1="100.69" y1="602" x2="100.69" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.192s,0.632s" x1="129.15" y1="602" x2="129.15" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.218s,0.658s" x1="157.62" y1="602" x2="157.62" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.244s,0.684s" x1="186.08" y1="602" x2="186.08" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.270s,0.710s" x1="214.54" y1="602" x2="214.54" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.296s,0.736s" x1="243.00" y1="602" x2="243.00" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.322s,0.762s" x1="271.46" y1="602" x2="271.46" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.348s,0.788s" x1="299.92" y1="602" x2="299.92" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.374s,0.814s" x1="328.38" y1="602" x2="328.38" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.400s,0.840s" x1="356.85" y1="602" x2="356.85" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.426s,0.866s" x1="385.31" y1="602" x2="385.31" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.452s,0.892s" x1="413.77" y1="602" x2="413.77" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.478s,0.918s" x1="442.23" y1="602" x2="442.23" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.504s,0.944s" x1="470.69" y1="602" x2="470.69" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.530s,0.970s" x1="499.15" y1="602" x2="499.15" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.556s,0.996s" x1="527.62" y1="602" x2="527.62" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.582s,1.022s" x1="556.08" y1="602" x2="556.08" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.608s,1.048s" x1="584.54" y1="602" x2="584.54" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.725;animation-delay:0.634s,1.074s" x1="613.00" y1="602" x2="613.00" y2="126" stroke="#c774e8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.634s" x="610.50" y="584" width="5" height="18" fill="#c774e8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.836;animation-delay:0.660s,1.100s" x1="641.46" y1="602" x2="641.46" y2="126" stroke="#ff6ad5" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.660s" x="638.96" y="584" width="5" height="18" fill="#ff6ad5" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.725;animation-delay:0.686s,1.126s" x1="669.92" y1="602" x2="669.92" y2="126" stroke="#c774e8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.686s" x="667.42" y="584" width="5" height="18" fill="#c774e8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.802;animation-delay:0.712s,1.152s" x1="698.38" y1="602" x2="698.38" y2="126" stroke="#c774e8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.712s" x="695.88" y="584" width="5" height="18" fill="#c774e8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.811;animation-delay:0.738s,1.178s" x1="726.85" y1="602" x2="726.85" y2="126" stroke="#ff6ad5" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.738s" x="724.35" y="584" width="5" height="18" fill="#ff6ad5" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.860;animation-delay:0.764s,1.204s" x1="755.31" y1="602" x2="755.31" y2="126" stroke="#ff6ad5" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.764s" x="752.81" y="584" width="5" height="18" fill="#ff6ad5" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.639;animation-delay:0.790s,1.230s" x1="783.77" y1="602" x2="783.77" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.790s" x="781.27" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.653;animation-delay:0.816s,1.256s" x1="812.23" y1="602" x2="812.23" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.816s" x="809.73" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.653;animation-delay:0.842s,1.282s" x1="840.69" y1="602" x2="840.69" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.842s" x="838.19" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.653;animation-delay:0.868s,1.308s" x1="869.15" y1="602" x2="869.15" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.868s" x="866.65" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.502;animation-delay:0.894s,1.334s" x1="897.62" y1="602" x2="897.62" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.894s" x="895.12" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:0.920s,1.360s" x1="926.08" y1="602" x2="926.08" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.591;animation-delay:0.946s,1.386s" x1="954.54" y1="602" x2="954.54" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.946s" x="952.04" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.624;animation-delay:0.972s,1.412s" x1="983.00" y1="602" x2="983.00" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.972s" x="980.50" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.591;animation-delay:0.998s,1.438s" x1="1011.46" y1="602" x2="1011.46" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:0.998s" x="1008.96" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.466;animation-delay:1.024s,1.464s" x1="1039.92" y1="602" x2="1039.92" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.024s" x="1037.42" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.466;animation-delay:1.050s,1.490s" x1="1068.38" y1="602" x2="1068.38" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.050s" x="1065.88" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.624;animation-delay:1.076s,1.516s" x1="1096.85" y1="602" x2="1096.85" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.076s" x="1094.35" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.529;animation-delay:1.102s,1.542s" x1="1125.31" y1="602" x2="1125.31" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.102s" x="1122.81" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.691;animation-delay:1.128s,1.568s" x1="1153.77" y1="602" x2="1153.77" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.128s" x="1151.27" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.502;animation-delay:1.154s,1.594s" x1="1182.23" y1="602" x2="1182.23" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.154s" x="1179.73" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.180s,1.620s" x1="1210.69" y1="602" x2="1210.69" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.206s,1.646s" x1="1239.15" y1="602" x2="1239.15" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.232s,1.672s" x1="1267.62" y1="602" x2="1267.62" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.466;animation-delay:1.258s,1.698s" x1="1296.08" y1="602" x2="1296.08" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.258s" x="1293.58" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.466;animation-delay:1.284s,1.724s" x1="1324.54" y1="602" x2="1324.54" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.284s" x="1322.04" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.310s,1.750s" x1="1353.00" y1="602" x2="1353.00" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.529;animation-delay:1.336s,1.776s" x1="1381.46" y1="602" x2="1381.46" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.336s" x="1378.96" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.466;animation-delay:1.362s,1.802s" x1="1409.92" y1="602" x2="1409.92" y2="126" stroke="#315ee8" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.362s" x="1407.42" y="584" width="5" height="18" fill="#315ee8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.388s,1.828s" x1="1438.38" y1="602" x2="1438.38" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.414s,1.854s" x1="1466.85" y1="602" x2="1466.85" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.440s,1.880s" x1="1495.31" y1="602" x2="1495.31" y2="126" stroke="#315ee8" stroke-width="1.5"/>
+      <line class="boot-thread" style="--thread-opacity:0.639;animation-delay:1.466s,1.906s" x1="1523.77" y1="602" x2="1523.77" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.466s" x="1521.27" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
+    </g>
 
     <text x="60" y="550" textLength="1480" lengthAdjust="spacingAndGlyphs" fill="#13275a" font-family="Arial Black, Arial, sans-serif" font-size="520" font-weight="900">ADAM</text>
 
@@ -351,6 +508,11 @@
 
     <text class="word-outline" x="60" y="550" textLength="1480" lengthAdjust="spacingAndGlyphs" fill="none" stroke="#315ee8" stroke-width="4" opacity=".48" font-family="Arial Black, Arial, sans-serif" font-size="520" font-weight="900">ADAM</text>
 
+    <g class="word-lock-ghost" pointer-events="none">
+      <text class="lock-cyan" x="60" y="550" textLength="1480" lengthAdjust="spacingAndGlyphs" fill="none" stroke="#00d8ff" stroke-width="5" font-family="Arial Black, Arial, sans-serif" font-size="520" font-weight="900">ADAM</text>
+      <text class="lock-pink" x="60" y="550" textLength="1480" lengthAdjust="spacingAndGlyphs" fill="none" stroke="#ff6ad5" stroke-width="5" font-family="Arial Black, Arial, sans-serif" font-size="520" font-weight="900">ADAM</text>
+    </g>
+
     <line class="signal-rail" x1="60" y1="558" x2="1540" y2="558" stroke="#00d8ff" stroke-width="2" stroke-dasharray="8 42" opacity=".52"/>
     <g>
       <rect class="timeline-band" x="60.00" y="598" width="24.46" height="4" fill="#315ee8" opacity="0.24" style="animation-delay:0.450s"/>
@@ -417,13 +579,31 @@
 
     <rect y="660" width="1600" height="60" fill="#090c13" opacity=".95"/>
     <line x1="0" y1="660" x2="1600" y2="660" stroke="#315ee8" stroke-width="2" opacity=".62"/>
-    <text x="60" y="698" fill="#b7a9c2" font-size="14" font-weight="700">EACH BAND IS ONE WEEK / HEIGHT + BRIGHTNESS FOLLOW REAL ACTIVITY</text>
 
-    <g opacity=".86">
-      <rect class="website-pulse" x="1320" y="681" width="6" height="6" fill="#315ee8"/>
-      <text x="1540" y="688" fill="#aebbe2" font-size="14" font-weight="700" text-anchor="end">OPEN DESKTOP ARCHIVE</text>
-      <text x="1540" y="710" fill="#8091be" font-size="12" text-anchor="end">HOME.ADAMLLLL.COM</text>
-      <line x1="1320" y1="716" x2="1540" y2="716" stroke="#315ee8" stroke-width="1" opacity=".42"/>
+    <g>
+      <rect x="28" y="670" width="1544" height="38" fill="url(#taskbar)" stroke="#8091be" stroke-width="2"/>
+      <line x1="30" y1="672" x2="1570" y2="672" stroke="#f7f3ff" stroke-width="2" opacity=".24"/>
+      <line x1="30" y1="706" x2="1570" y2="706" stroke="#05070d" stroke-width="2" opacity=".86"/>
+      <rect x="42" y="676" width="112" height="26" fill="#1b315f" stroke="#f7f3ff" stroke-width="2" opacity=".94"/>
+      <line x1="44" y1="678" x2="152" y2="678" stroke="#d6e3ff" stroke-width="2" opacity=".42"/>
+      <line x1="44" y1="700" x2="152" y2="700" stroke="#05070d" stroke-width="2" opacity=".9"/>
+      <text x="56" y="694" fill="#f7f3ff" font-size="13" font-weight="700">ADAM_OS</text>
+      <text x="174" y="694" fill="#b7a9c2" font-size="13" font-weight="700">52 WEEKS / LIVE SIGNAL</text>
+      <g class="os-button">
+        <rect x="1250" y="675" width="268" height="28" fill="#315ee8" stroke="#f7f3ff" stroke-width="2"/>
+        <line x1="1252" y1="677" x2="1516" y2="677" stroke="#f7f3ff" stroke-width="2" opacity=".5"/>
+        <line x1="1252" y1="701" x2="1516" y2="701" stroke="#05070d" stroke-width="2" opacity=".9"/>
+        <text x="1384" y="694" fill="#f7f3ff" font-size="14" font-weight="700" text-anchor="middle">OPEN ADAM_OS</text>
+      </g>
+      <rect class="website-pulse" x="1232" y="685" width="6" height="6" fill="#06ffa5"/>
+    </g>
+    <text x="1540" y="716" fill="#8091be" font-size="11" text-anchor="end">HOME.ADAMLLLL.COM</text>
+
+    <rect class="cta-launch" x="1244" y="671" width="280" height="36" fill="none" stroke="#00d8ff" stroke-width="3" pointer-events="none"/>
+    <g class="maximize-shell" fill="none" stroke-linejoin="miter" pointer-events="none">
+      <rect x="16" y="14" width="1568" height="692" stroke="#f7f3ff" stroke-width="3"/>
+      <rect x="24" y="22" width="1552" height="676" stroke="#315ee8" stroke-width="3" opacity=".88"/>
+      <path d="M1250 675 H1518 V704 H1250 Z" stroke="#00d8ff" stroke-width="3"/>
     </g>
 
     <rect width="1600" height="720" fill="url(#scanlines)" pointer-events="none"/>

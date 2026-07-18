@@ -16,9 +16,11 @@ This repository powers the GitHub profile README for `adamllll`.
 
 ## Visual Direction
 
-- Current style: cobalt activity typography with a large `ADAM` word mark.
+- Current style: a night-mode Win95 profile window with cobalt activity typography and a large `ADAM` word mark.
 - Each of the 52 vertical bands represents one week of real GitHub contribution activity.
 - Band brightness, the compact timeline, the yearly total, and recent pulses are data-driven.
+- The title bar and taskbar remain as a light system skeleton; during boot, `OPEN ADAM_OS` expands a full pixel frame while 52 vertical data conduits load the word mark, then all temporary boot geometry fades away.
+- A compact `SYSTEM DIRECTORY` rail may sit below the poster for real Projects, Blog, and About links; keep it text-only and subordinate.
 - Motion must remain self-contained in the SVG, use no JavaScript, and respect `prefers-reduced-motion`.
 - Tone: bold, direct, readable, and brand-led rather than dashboard-like.
 - Do not add a separate README contribution graph. GitHub already renders its native contribution module below the README.
