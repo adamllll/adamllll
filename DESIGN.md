@@ -74,10 +74,10 @@ components:
     rounded: "{rounded.none}"
     label: "OPEN ADAM_OS"
   system-directory:
-    backgroundColor: "transparent"
-    textColor: "{colors.cobalt-wordmark}"
-    rounded: "{rounded.none}"
-    behavior: "text-only GitHub-compatible links below the poster"
+    backgroundColor: "GitHub preformatted surface"
+    textColor: "GitHub native link color"
+    rounded: "GitHub-controlled"
+    behavior: "full-width GitHub-safe system bar with real links left and a muted status asset right"
 ---
 
 # Design System: ADAM_OS Commit Signal
@@ -190,9 +190,10 @@ The system is flat by default. Depth comes from a dim word base, bright activity
 
 ### System Directory
 
-- **Shape:** One centered text-only rail below the SVG, separated with plain slashes.
+- **Shape:** One full-width preformatted system bar below the SVG. Real text links stay left; `ADAM_OS / DIRECTORY READY` sits at the far right as a muted status asset.
 - **Links:** `PROJECTS.EXE`, `BLOG.DB`, and `ABOUT.SYS` point to real pages on the personal website.
-- **Constraint:** The rail never repeats `OPEN ADAM_OS` and never grows into a card grid or badge wall.
+- **Responsive behavior:** Below 600px, the decorative status asset swaps to a transparent 1px source so all three links remain unobstructed.
+- **Constraint:** The rail never repeats `OPEN ADAM_OS` and never grows into a window, card grid, badge wall, or statistics panel.
 
 ## Do's and Don'ts
 

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="238" height="20" viewBox="0 0 238 20" role="img" aria-labelledby="title">
+  <title id="title">ADAM_OS / DIRECTORY READY</title>
+  <style>
+    .status { fill: #8b9ac5; }
+    @media (prefers-color-scheme: light) {
+      .status { fill: #57606a; }
+    }
+  </style>
+  <text class="status" x="238" y="15" font-family="Courier New, Consolas, monospace" font-size="14" font-weight="700" text-anchor="end">ADAM_OS / DIRECTORY READY</text>
+</svg>
