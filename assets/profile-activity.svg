@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
   <title id="title">ADAM contribution signal</title>
-  <desc id="desc">A data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 242 GitHub contributions across 75 active days, with 7 contributions in the last seven days.</desc>
-  <metadata>source=github-graphql-viewer; user=adamllll; window=52-sunday-weeks; calendar-total=242; rolling-total=242</metadata>
+  <desc id="desc">A data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 244 GitHub contributions across 76 active days, with 9 contributions in the last seven days.</desc>
+  <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=244; rolling-total=244</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#090d16"/>
@@ -33,7 +33,7 @@
       .star-field { animation: star-drift 20s steps(20, end) 2.8s infinite alternate; }
       .activity-band { transform-box: fill-box; transform-origin: center bottom; animation: band-rise .85s steps(7, end) both; }
       .timeline-band { transform-box: fill-box; transform-origin: center bottom; animation: timeline-rise .55s steps(5, end) both; }
-      .activity-scan { animation: activity-scan 9.96s cubic-bezier(.16, 1, .3, 1) 2.2s infinite; }
+      .activity-scan { animation: activity-scan 9.72s cubic-bezier(.16, 1, .3, 1) 2.2s infinite; }
       .recent-band { animation: recent-pulse 3.4s steps(4, end) 2.8s infinite; }
       .signal-rail { animation: signal-run 7.2s linear 2.5s infinite; }
       .website-pulse { animation: website-pulse 4.6s steps(2, end) 3.2s infinite; }
@@ -62,7 +62,7 @@
 
     <text x="60" y="44" fill="#00d8ff" font-size="18" font-weight="700">adamllll</text>
     <text x="60" y="78" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="900">52 WEEKS SHAPE THE NAME</text>
-    <text x="1540" y="51" fill="#fffd82" font-size="30" font-weight="700" text-anchor="end">242 CONTRIBUTIONS</text>
+    <text x="1540" y="51" fill="#fffd82" font-size="30" font-weight="700" text-anchor="end">244 CONTRIBUTIONS</text>
     <text x="1540" y="79" fill="#a997b7" font-size="14" text-anchor="end">ROLLING YEAR / LIVE GITHUB ACTIVITY</text>
     <line x1="60" y1="96" x2="1540" y2="96" stroke="#315ee8" stroke-width="2" opacity=".42"/>
 
@@ -322,10 +322,10 @@
   <rect x="1483.08" y="126" width="24.46" height="424" fill="#315ee8" opacity="0.16"/>
 </g>
       <g class="activity-band" style="animation-delay:1.676s">
-  <title>Week 52: 7 contributions</title>
+  <title>Week 52: 9 contributions</title>
   <rect x="1511.54" y="126" width="24.46" height="424" fill="#315ee8" opacity="0.23"/>
-  <rect x="1511.54" y="311" width="24.46" height="239" fill="#00d8ff" opacity="0.72"/>
-  <rect x="1514.54" y="307" width="18.46" height="4" fill="#f7f3ff" opacity=".58"/>
+  <rect x="1511.54" y="288" width="24.46" height="262" fill="#00d8ff" opacity="0.75"/>
+  <rect x="1514.54" y="284" width="18.46" height="4" fill="#f7f3ff" opacity=".58"/>
   <rect class="recent-band" x="1511.54" y="126" width="24.46" height="424" fill="#fffd82" opacity="0"/>
 </g>
       <g fill="none" stroke="#090d16" stroke-width="4" opacity=".64">
@@ -404,7 +404,7 @@
       <rect class="timeline-band" x="1426.15" y="598" width="24.46" height="4" fill="#315ee8" opacity="0.24" style="animation-delay:1.506s"/>
       <rect class="timeline-band" x="1454.62" y="598" width="24.46" height="4" fill="#315ee8" opacity="0.24" style="animation-delay:1.528s"/>
       <rect class="timeline-band" x="1483.08" y="598" width="24.46" height="4" fill="#315ee8" opacity="0.24" style="animation-delay:1.550s"/>
-      <rect class="timeline-band" x="1511.54" y="582" width="24.46" height="20" fill="#00d8ff" opacity="0.74" style="animation-delay:1.572s"/>
+      <rect class="timeline-band" x="1511.54" y="580" width="24.46" height="22" fill="#00d8ff" opacity="0.77" style="animation-delay:1.572s"/>
     </g>
     <line x1="60" y1="604" x2="1540" y2="604" stroke="#315ee8" stroke-width="2" opacity=".48"/>
     <g>
