@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
   <title id="title">ADAM_OS contribution signal</title>
-  <desc id="desc">A night-mode ADAM_OS profile window with a data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 797 GitHub contributions across 176 active days, with 12 contributions in the last seven days.</desc>
+  <desc id="desc">A night-mode ADAM_OS profile window with a data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 797 GitHub contributions across 175 active days, with 12 contributions in the last seven days.</desc>
   <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=803; rolling-total=797</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
