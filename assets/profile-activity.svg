@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
   <title id="title">ADAM_OS contribution signal</title>
-  <desc id="desc">A night-mode ADAM_OS profile window with a data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 808 GitHub contributions across 171 active days, with 17 contributions in the last seven days.</desc>
-  <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=811; rolling-total=808</metadata>
+  <desc id="desc">A night-mode ADAM_OS profile window with a data-driven ADAM word mark formed by 52 weekly bands. Bright fill height follows 817 GitHub contributions across 171 active days, with 26 contributions in the last seven days.</desc>
+  <metadata>source=github-public-calendar; user=adamllll; window=52-sunday-weeks; calendar-total=820; rolling-total=817</metadata>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#090d16"/>
@@ -42,7 +42,7 @@
       .star-field { animation: star-drift 20s steps(20, end) 2.8s infinite alternate; }
       .activity-band { transform-box: fill-box; transform-origin: center bottom; animation: band-rise .62s steps(6, end) both; }
       .timeline-band { transform-box: fill-box; transform-origin: center bottom; animation: timeline-rise .55s steps(5, end) both; }
-      .activity-scan { animation: activity-scan 8.76s cubic-bezier(.16, 1, .3, 1) 2.2s infinite; }
+      .activity-scan { animation: activity-scan 8.40s cubic-bezier(.16, 1, .3, 1) 2.2s infinite; }
       .recent-band { animation: recent-pulse 3.4s steps(4, end) 2.8s infinite; }
       .signal-rail { animation: signal-run 7.2s linear 2.5s infinite; }
       .website-pulse { animation: website-pulse 4.6s steps(2, end) 3.2s infinite; }
@@ -139,7 +139,7 @@
 
     <text x="60" y="80" fill="#00d8ff" font-size="16" font-weight="700">adamllll</text>
     <text x="60" y="108" fill="#f7f3ff" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="900">52 WEEKS SHAPE THE NAME</text>
-    <text x="1540" y="82" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">808 CONTRIBUTIONS</text>
+    <text x="1540" y="82" fill="#fffd82" font-size="28" font-weight="700" text-anchor="end">817 CONTRIBUTIONS</text>
     <text x="1540" y="107" fill="#a997b7" font-size="14" text-anchor="end">ROLLING YEAR / LIVE GITHUB ACTIVITY</text>
     <line x1="60" y1="116" x2="1540" y2="116" stroke="#315ee8" stroke-width="2" opacity=".42"/>
 
@@ -242,8 +242,8 @@
       <line class="boot-thread" style="--thread-opacity:0.593;animation-delay:1.414s,1.854s" x1="1466.85" y1="602" x2="1466.85" y2="126" stroke="#00d8ff" stroke-width="2.5"/>
       <rect class="boot-pulse" style="animation-delay:1.414s" x="1464.35" y="584" width="5" height="18" fill="#00d8ff" opacity=".92"/>
       <line class="boot-thread" style="--thread-opacity:0.120;animation-delay:1.440s,1.880s" x1="1495.31" y1="602" x2="1495.31" y2="126" stroke="#315ee8" stroke-width="1.5"/>
-      <line class="boot-thread" style="--thread-opacity:0.633;animation-delay:1.466s,1.906s" x1="1523.77" y1="602" x2="1523.77" y2="126" stroke="#c774e8" stroke-width="2.5"/>
-      <rect class="boot-pulse" style="animation-delay:1.466s" x="1521.27" y="584" width="5" height="18" fill="#c774e8" opacity=".92"/>
+      <line class="boot-thread" style="--thread-opacity:0.693;animation-delay:1.466s,1.906s" x1="1523.77" y1="602" x2="1523.77" y2="126" stroke="#ff6ad5" stroke-width="2.5"/>
+      <rect class="boot-pulse" style="animation-delay:1.466s" x="1521.27" y="584" width="5" height="18" fill="#ff6ad5" opacity=".92"/>
     </g>
 
     <text x="60" y="550" textLength="1480" lengthAdjust="spacingAndGlyphs" fill="#13275a" font-family="Arial Black, Arial, sans-serif" font-size="520" font-weight="900">ADAM</text>
@@ -549,10 +549,10 @@
   <rect x="1483.08" y="126" width="24.46" height="424" fill="#315ee8" opacity="0.16"/>
 </g>
       <g class="activity-band" style="animation-delay:1.676s">
-  <title>Week 52: 17 contributions</title>
+  <title>Week 52: 26 contributions</title>
   <rect x="1511.54" y="126" width="24.46" height="424" fill="#315ee8" opacity="0.23"/>
-  <rect x="1511.54" y="292" width="24.46" height="258" fill="#c774e8" opacity="0.74"/>
-  <rect x="1514.54" y="288" width="18.46" height="4" fill="#f7f3ff" opacity=".58"/>
+  <rect x="1511.54" y="248" width="24.46" height="302" fill="#ff6ad5" opacity="0.81"/>
+  <rect x="1514.54" y="244" width="18.46" height="4" fill="#f7f3ff" opacity=".58"/>
   <rect class="recent-band" x="1511.54" y="126" width="24.46" height="424" fill="#fffd82" opacity="0"/>
 </g>
       <g fill="none" stroke="#090d16" stroke-width="4" opacity=".64">
@@ -636,7 +636,7 @@
       <rect class="timeline-band" x="1426.15" y="598" width="24.46" height="4" fill="#315ee8" opacity="0.24" style="animation-delay:1.506s"/>
       <rect class="timeline-band" x="1454.62" y="583" width="24.46" height="19" fill="#00d8ff" opacity="0.72" style="animation-delay:1.528s"/>
       <rect class="timeline-band" x="1483.08" y="598" width="24.46" height="4" fill="#315ee8" opacity="0.24" style="animation-delay:1.550s"/>
-      <rect class="timeline-band" x="1511.54" y="581" width="24.46" height="21" fill="#c774e8" opacity="0.76" style="animation-delay:1.572s"/>
+      <rect class="timeline-band" x="1511.54" y="577" width="24.46" height="25" fill="#ff6ad5" opacity="0.82" style="animation-delay:1.572s"/>
     </g>
     <line x1="60" y1="604" x2="1540" y2="604" stroke="#315ee8" stroke-width="2" opacity=".48"/>
     <g>
